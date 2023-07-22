@@ -1,6 +1,32 @@
 /** @format */
-
-.container-fluid {
-  background-color: blueviolet;
-  padding: 0 90px;
+:root {
+  background-color: #dad7cd;
 }
+
+.navbar {
+  background-color: #dad7cd;
+}
+
+.navbar .nav-link {
+  color: black;
+}
+
+.navbar .nav-link:hover {
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  -webkit-transition-property: border;
+  transition-property: border;
+  border-bottom: 3px solid #3a5a40;
+}
+
+.navbar #search {
+  background-color: #ffffff00;
+  color: black;
+}
+
+.navbar .btn-primary {
+  border: #ffffff00;
+}
+/*# sourceMappingURL=style.css.map */
