@@ -9,16 +9,15 @@
 
 .navbar {
   background-color: #f2f2f1;
-  font-weight: bold;
 }
 
 .navbar .navbar-brand {
   font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .navbar .nav-item {
   font-size: larger;
-  font-weight: bold;
 }
 
 .navbar .container-fluid {
@@ -42,7 +41,6 @@
 .navbar .btn {
   background-color: #ffffff00;
   color: black;
-  font-weight: bold;
   border: #ffffff00;
 }
 
