@@ -1,0 +1,20 @@
+:root {
+    background-color: #f2f2f1;
+  }
+
+  h4{
+font-weight: bold;
+  }
+
+#openingDiv{
+    display:flex;
+    flex-direction: column;
+    word-break: break-all;
+    /* white-space: normal; */
+    align-items: center;
+}
+
+#openingDiv p{
+font-size: 1.4rem ;
+font-weight: 400;
+}
