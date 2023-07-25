@@ -30,7 +30,7 @@ function addNavbar() {
           <a class="nav-link" id="search" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link" href="/shop.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          <button class="btn btn-primary nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"><i class="fa-solid fa-cart-shopping"></i></button>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link" href="/profile.html"><i class="fa-solid fa-user"></i></a>
