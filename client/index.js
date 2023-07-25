@@ -20,19 +20,20 @@ function addNavbar() {
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./contact.html">Contact Us</a>
+              <a class="nav-link" href="./contact.html">Contact</a>
             </li>
           </ul>
           <form class="d-flex">
-            <!-- <input class="form-control me-2" type="text" placeholder="Search" /> -->
-            <button class="btn btn-primary" type="button">Search</button>
+            <!-- <input class="form-control me-2" type="text" placeholder="Search" /> -->         <li class="nav-item">
+              <a class="nav-link" type="button">Search</a>
+            </li>
           </form>
           <ul class="navbar-nav me-right">
             <li class="nav-item">
-              <a class="btn btn-primary" href="/shop.html">Shop</a>
+              <a class="nav-link" href="/shop.html">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary" href="/profile.html">Profile</a>
+              <a class="nav-link" href="/profile.html">Profile</a>
             </li>
           </ul>
         </div>

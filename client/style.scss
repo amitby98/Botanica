@@ -36,7 +36,9 @@
       transition-timing-function: linear;
       transition-duration: 0.1s;
       transition-property: border;
-      border-bottom: 3px solid #3a5a40;
+      // background-color: #3a5a40;
+      // color: white;
+      // border-bottom: 3px solid #3a5a40;
       //   background-color: #3a5a40;
     }
 
@@ -54,6 +56,12 @@
 
     &:hover {
       background-color: #3a5a40;
+      color: white;
+    }
+
+    &:active {
+      background-color: #3a5a40;
+      color: white;
     }
   }
 }
