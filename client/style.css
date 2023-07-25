@@ -12,12 +12,9 @@
 }
 
 .navbar .navbar-brand {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: bold;
-}
-
-.navbar .nav-item {
-  font-size: larger;
+  margin-right: 3rem;
 }
 
 .navbar .container-fluid {
@@ -25,6 +22,8 @@
 }
 
 .navbar .nav-link {
+  font-size: 1.4rem;
+  font-weight: lighter;
   color: black;
 }
 
@@ -37,19 +36,28 @@
   transition-property: border;
 }
 
-.navbar .btn {
+.navbar .btn,
+.navbar .nav-link {
   background-color: #ffffff00;
   color: black;
   border: #ffffff00;
 }
 
-.navbar .btn:hover {
+.navbar .btn:hover,
+.navbar .nav-link:hover {
   background-color: #3a5a40;
   color: white;
+  border-radius: 5px;
 }
 
-.navbar .btn:active {
+.navbar .btn:active,
+.navbar .nav-link:active {
   background-color: #3a5a40;
   color: white;
+  border-radius: 5px;
+}
+
+.navbar i {
+  font-size: 1.6rem;
 }
 /*# sourceMappingURL=style.css.map */
