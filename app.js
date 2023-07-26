@@ -4,6 +4,7 @@ const { userRouter } = require("./router/users-router");
 const app = express();
 
 app.use(express.static("client"));
+app.use(express.json());
 
 app.use("/api/users", userRouter);
 
