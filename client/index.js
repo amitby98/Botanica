@@ -158,6 +158,10 @@ function addFooter() {
 addNavbar();
 addFooter();
 
+$(".message a").click(function () {
+  $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+});
+
 const loginUserInput = $("#login-username");
 const loginPasswordInput = $("#login-password");
 const registerUserInput = $("#register-username");
@@ -204,20 +208,8 @@ $(".register-form").on("submit", e => {
   });
 });
 
-$("#create-account-link").on("click", e => {
-  e.preventDefault();
-  $(".form .register-form").attr("style", "display: inline;");
-  $(".form .login-form").attr("style", "display: none;");
-});
-
-$("#login-link").on("click", e => {
-  e.preventDefault();
-  $(".form .register-form").attr("style", "display: none;");
-  $(".form .login-form").attr("style", "display: inline;");
-});
-
 const userString = localStorage.getItem("user");
 if (userString) {
   $("#login-overlay").attr("style", "display: none;");
-  $("#profile-link").attr("style", "display: inline;");
+  $("#profile-link").attr("style", "display: block;");
 }

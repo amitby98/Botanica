@@ -1,69 +1,3 @@
-/** @format */
-* {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  // background-color: #f2f2f1;
-}
-
-:root {
-  background-color: #f2f2f1;
-}
-
-.navbar {
-  background-color: #f2f2f1;
-
-  .dropdown-item {
-    background-color: white;
-  }
-
-  .navbar-brand {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-right: 3rem;
-  }
-
-  .container-fluid {
-    padding: 0.5rem 3rem 0rem 3rem;
-  }
-
-  .nav-link {
-    font-size: 1.4rem;
-    font-weight: lighter;
-  }
-
-  #profile-link {
-    display: none;
-  }
-
-  .btn,
-  .nav-link {
-    background-color: #ffffff00;
-    color: black;
-    border: #ffffff00;
-
-    &:hover {
-      background-color: #3a5a40;
-      color: white;
-      border-radius: 5px;
-    }
-
-    // &:active {
-    //   background-color: #3a5a40;
-    //   color: white;
-    //   border-radius: 5px;
-    // }
-  }
-
-  i {
-    font-size: 1.6rem;
-    background-color: transparent;
-  }
-}
-
-footer {
-  background-color: #3a5a40;
-  // background-color: #45526e;
-}
-
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 :root {
@@ -121,3 +55,37 @@ footer {
 .form .register-form {
   display: none;
 }
+/* .container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before,
+.container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #ef3b3a;
+} */
