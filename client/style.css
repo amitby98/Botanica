@@ -121,4 +121,8 @@ footer {
 .form .register-form {
   display: none;
 }
+
+#offcanvas-2 {
+  bottom: 50%;
+}
 /*# sourceMappingURL=style.css.map */
