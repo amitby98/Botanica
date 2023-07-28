@@ -71,10 +71,11 @@ function addNavbar() {
               <h1>Create Account</h1>
               <input id="register-username" type="text" placeholder="Username" />
               <input id="register-password" type="password" placeholder="Password" />
-              <select name="role" id="role">
-                <option value="buyer" selected>Buyer</option>
-                <option value="seller">Seller</option>
-              </select>
+              <select name="role" id="role" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </select>
               <button type="submit" class="buttons">Sign Up</button>
             </form>
           </div>
@@ -211,6 +212,9 @@ $(".login-form").on("submit", e => {
       window.location.reload();
     },
   });
+
+  loginUserInput.val("");
+  loginPasswordInput.val("");
 });
 
 $(".register-form").on("submit", e => {
