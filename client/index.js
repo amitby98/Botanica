@@ -45,19 +45,12 @@ function addNavbar() {
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+    <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Dropdown button</button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
+    <a class="checkout" href="/checkout.html" role="button">Checkout</a>
   </div>
 </div>
 <div id="loginModal" class="modal fade" role="dialog">
@@ -72,10 +65,10 @@ function addNavbar() {
               <input id="register-username" type="text" placeholder="Username" />
               <input id="register-password" type="password" placeholder="Password" />
               <select name="role" id="role" required>
-              <option value="" disabled selected>Select an option</option>
-              <option value="buyer">Buyer</option>
-              <option value="seller">Seller</option>
-            </select>
+                <option value="" disabled selected>Select an option</option>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+              </select>
               <button type="submit" class="buttons">Sign Up</button>
             </form>
           </div>

@@ -22,12 +22,6 @@ body {
   font-weight: lighter;
 }
 
-.navbar .nav-link.active {
-  background-color: #3a5a40;
-  color: white;
-  border-radius: 5px;
-}
-
 .navbar #profile-link {
   display: none;
 }
@@ -41,7 +35,7 @@ body {
 
 .navbar .btn:hover,
 .navbar .nav-link:hover {
-  background-color: #3a5a40;
+  background-color: #559c73;
   color: white;
   border-radius: 5px;
 }
@@ -60,8 +54,8 @@ footer {
 }
 
 .modal-content {
-  background: -webkit-gradient(linear, left top, right bottom, from(#3a5a40), to(#305030));
-  background: linear-gradient(to bottom right, #3a5a40, #305030);
+  background: -webkit-gradient(linear, left top, right bottom, from(#559c73), to(#305030));
+  background: linear-gradient(to bottom right, #559c73, #305030);
 }
 
 h1 {
@@ -234,8 +228,8 @@ p {
 
 .modal .overlay {
   background: #477050;
-  background: -webkit-gradient(linear, left top, right top, from(#3a5a40), to(#477050));
-  background: linear-gradient(to right, #3a5a40, #477050);
+  background: -webkit-gradient(linear, left top, right top, from(#559c73), to(#477050));
+  background: linear-gradient(to right, #559c73, #477050);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
