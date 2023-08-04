@@ -321,7 +321,6 @@ p {
 
   @media (min-width: 600px) and (max-width: 768px) {
     margin-bottom: 1.5rem;
-
     .corner-image-bottom-left,
     .corner-image-bottom-right {
       max-width: 100%; /* On smaller screens, make the image full-width */
@@ -329,6 +328,9 @@ p {
   }
   @media (min-width: 780px) and (max-width: 1000px) {
     margin-bottom: 2.5rem;
+  }
+  @media (max-height: 1000px) and (min-width: 600px) {
+    margin-bottom: -0.3rem;
   }
   @media (max-width: 600px) {
     margin-bottom: 0;
