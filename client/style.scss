@@ -303,7 +303,7 @@ p {
 
   .corner-image-bottom-left img,
   .corner-image-bottom-right img {
-    min-width: 70%;
+    min-width: 75%;
     height: 95vh;
   }
 
@@ -324,6 +324,11 @@ p {
     .corner-image-bottom-left,
     .corner-image-bottom-right {
       max-width: 100%; /* On smaller screens, make the image full-width */
+    }
+    .corner-image-bottom-left img,
+    .corner-image-bottom-right img {
+      min-width: 70%;
+      height: 95vh;
     }
   }
   @media (min-width: 780px) and (max-width: 1000px) {

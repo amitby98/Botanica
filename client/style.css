@@ -325,7 +325,7 @@ p {
 
 #home .corner-image-bottom-left img,
 #home .corner-image-bottom-right img {
-  min-width: 70%;
+  min-width: 75%;
   height: 95vh;
 }
 
@@ -349,6 +349,11 @@ p {
   #home .corner-image-bottom-right {
     max-width: 100%;
     /* On smaller screens, make the image full-width */
+  }
+  #home .corner-image-bottom-left img,
+  #home .corner-image-bottom-right img {
+    min-width: 70%;
+    height: 95vh;
   }
 }
 
