@@ -1,3 +1,5 @@
+const currentPage = window.location.pathname.slice(1);
+
 function addNavbar() {
   const navbarHtml = `
   <nav class="navbar navbar-expand-sm">
@@ -9,10 +11,10 @@ function addNavbar() {
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item mx-2">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link ${currentPage === "" ? "selected" : ""}" href="/">Home</a>
         </li>
         <li class="nav-item mx-2 dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Products</a>
+          <a class="nav-link dropdown-toggle ${currentPage === "products.html" ? "selected" : ""}" href="#" role="button" data-bs-toggle="dropdown">Products</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./products.html">Plants</a></li>
             <li><a class="dropdown-item" href="./products.html">Extras</a></li>
@@ -20,7 +22,7 @@ function addNavbar() {
           </ul>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link" href="./contact.html">Contact</a>
+          <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
       </ul>
       <ul class="navbar-nav me-right">
