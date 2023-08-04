@@ -329,11 +329,42 @@ p {
   @media (min-width: 780px) and (max-width: 1000px) {
     margin-bottom: 2.5rem;
   }
-  @media (max-height: 1000px) and (min-width: 600px) {
+  @media (max-height: 850px) and (min-width: 600px) {
     margin-bottom: -0.3rem;
   }
   @media (max-width: 600px) {
     margin-bottom: 0;
+  }
+
+  .masthead {
+    min-height: 30rem;
+    display: table;
+    width: 100%;
+    // height: auto;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+
+    h1 {
+      font-size: 12rem;
+      color: black;
+    }
+
+    #explore {
+      background-color: #34a060;
+      border-color: #34a060;
+      font-size: 1.5rem;
+      padding: 0.8rem 1.8rem 0.8rem 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (min-width: 992px) {
+      .masthead {
+        // height: 100vh;
+        h1 {
+          font-size: 5.5rem;
+        }
+      }
+    }
   }
 }
 
