@@ -311,7 +311,7 @@ p {
   color: #757575;
 }
 
-#home {
+#welcome-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -322,16 +322,53 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 90vh;
-  background: url("./src/background.png") no-repeat center center/cover;
+  height: 100vh;
 }
 
-#home h1 {
+#welcome-section h1 {
   padding-top: 60px;
   font-size: 48px;
 }
 
-#home h3 {
+#welcome-section h3 {
   font-size: 20px;
+}
+
+#home {
+  height: 90vh;
+  margin-bottom: 1rem;
+}
+
+#home .corner-image-bottom-left,
+#home .corner-image-bottom-right {
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+}
+
+#home .corner-image-bottom-left img,
+#home .corner-image-bottom-right img {
+  min-width: 70%;
+  height: auto;
+}
+
+#home .corner-image-bottom-left {
+  left: 0;
+}
+
+#home .corner-image-bottom-right {
+  right: 0;
+}
+
+#home .corner-image-bottom-right img {
+  float: right;
+}
+
+@media (max-width: 768px) {
+  #home .corner-image-bottom-left,
+  #home .corner-image-bottom-right {
+    max-width: 100%;
+    /* On smaller screens, make the image full-width */
+  }
 }
 /*# sourceMappingURL=style.css.map */
