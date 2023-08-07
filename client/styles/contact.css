@@ -122,9 +122,13 @@ body {
   margin-top: 30px;
 }
 
-.contact-page-map {
-  margin-top: 36px;
-}
 .contact-page-form form {
   padding: 20px 15px 0;
+}
+
+#map {
+  height: 80%;
+  width: 100%;
+  margin-top: 36px;
+
 }

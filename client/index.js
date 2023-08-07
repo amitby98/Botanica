@@ -239,3 +239,23 @@ $(document).ready(function () {
     $(this).siblings().removeClass("active");
   });
 });
+
+//////// Map Function
+let map;
+async function initMap() {
+  const position = { lat: 31.24, lng: 35.04 };
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  map = new Map(document.getElementById("map"), {
+    zoom: 6,
+    center: position,
+    mapId: "my-project-botanica-395208",
+  });
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    draggable: true,
+  });
+}
+
+initMap();
