@@ -272,25 +272,7 @@ p {
 }
 
 ///////////// Home
-// #welcome-section {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   height: 100vh;
-
-//   h1 {
-//     padding-top: 60px;
-
-//     font-size: 48px;
-//   }
-
-//   h3 {
-//     font-size: 20px;
-//   }
-// }
-
 #home {
-  // position: absolute;
   height: 90vh;
   margin-bottom: 1rem;
 
@@ -304,7 +286,7 @@ p {
   .corner-image-bottom-left img,
   .corner-image-bottom-right img {
     min-width: 75%;
-    height: 95vh;
+    height: 90vh;
   }
 
   .corner-image-bottom-left {
@@ -319,11 +301,33 @@ p {
     }
   }
 
+  .masthead {
+    min-height: 30rem;
+    display: table;
+    width: 100%;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    z-index: 1;
+    position: relative;
+
+    h1 {
+      font-size: 12rem;
+      color: black;
+    }
+
+    #explore {
+      background-color: #34a060;
+      border-color: #34a060;
+      font-size: 1.5rem;
+      padding: 0.8rem 1.8rem 0.8rem 1.8rem;
+      cursor: pointer;
+    }
+  }
   @media (min-width: 600px) and (max-width: 768px) {
     margin-bottom: 1.5rem;
     .corner-image-bottom-left,
     .corner-image-bottom-right {
-      max-width: 100%; /* On smaller screens, make the image full-width */
+      max-width: 100%;
     }
     .corner-image-bottom-left img,
     .corner-image-bottom-right img {
@@ -339,36 +343,103 @@ p {
   }
   @media (max-width: 600px) {
     margin-bottom: 0;
+
+    @media (max-width: 600px) {
+      .masthead .container h1 {
+        font-size: 6rem;
+      }
+    }
+  }
+}
+
+/////////// Carousel
+#carousel-intro {
+  height: 100vh;
+
+  #carousel-header {
+    font-size: 4rem;
+    color: black;
   }
 
-  .masthead {
-    min-height: 30rem;
-    display: table;
-    width: 100%;
-    // height: auto;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+  #intro-type {
+    margin-top: 2rem;
+    width: 35vw;
 
-    h1 {
-      font-size: 12rem;
+    .intro-types {
+      background-color: transparent;
+      border: none;
       color: black;
-    }
+      font-weight: bold;
+      font-size: 1.2rem;
 
-    #explore {
-      background-color: #34a060;
-      border-color: #34a060;
-      font-size: 1.5rem;
-      padding: 0.8rem 1.8rem 0.8rem 1.8rem;
-      cursor: pointer;
+      &.active {
+        background-color: #34a060;
+        // background-color: #a4c798;
+      }
     }
+  }
 
-    @media (min-width: 992px) {
-      .masthead {
-        // height: 100vh;
-        h1 {
-          font-size: 5.5rem;
+  #carouselControls {
+    .carousel-inner {
+      width: 90vw;
+      display: flex;
+      align-items: center;
+
+      #carousel-outdoor,
+      #carousel-hanging {
+        display: none;
+      }
+
+      .card {
+        margin: 0 0.5em;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .card-body {
+          margin-top: 1rem;
+          .card-title {
+            display: flex;
+            justify-content: center;
+            font-weight: 300;
+          }
+          .card-text {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1rem;
+          }
         }
       }
+      .carousel-inner {
+        padding: 1em;
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        background-color: #34a060;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        top: 50%;
+        margin: 1rem;
+      }
+      @media (min-width: 768px) {
+        .card img {
+          height: 23em;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    #carousel-header {
+      margin-top: 5rem;
+      font-size: 3.5rem;
+      color: black;
     }
   }
 }

@@ -231,3 +231,11 @@ if (userString) {
   $("#login-overlay").attr("style", "display: none;");
   $("#profile-link").attr("style", "display: block;");
 }
+
+//Carousel Functionality
+$(document).ready(function () {
+  $("#intro-type .intro-types").on("click", function () {
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+  });
+});

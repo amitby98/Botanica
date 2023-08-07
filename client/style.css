@@ -326,7 +326,7 @@ p {
 #home .corner-image-bottom-left img,
 #home .corner-image-bottom-right img {
   min-width: 75%;
-  height: 95vh;
+  height: 90vh;
 }
 
 #home .corner-image-bottom-left {
@@ -341,6 +341,29 @@ p {
   float: right;
 }
 
+#home .masthead {
+  min-height: 30rem;
+  display: table;
+  width: 100%;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  z-index: 1;
+  position: relative;
+}
+
+#home .masthead h1 {
+  font-size: 12rem;
+  color: black;
+}
+
+#home .masthead #explore {
+  background-color: #34a060;
+  border-color: #34a060;
+  font-size: 1.5rem;
+  padding: 0.8rem 1.8rem 0.8rem 1.8rem;
+  cursor: pointer;
+}
+
 @media (min-width: 600px) and (max-width: 768px) {
   #home {
     margin-bottom: 1.5rem;
@@ -348,7 +371,6 @@ p {
   #home .corner-image-bottom-left,
   #home .corner-image-bottom-right {
     max-width: 100%;
-    /* On smaller screens, make the image full-width */
   }
   #home .corner-image-bottom-left img,
   #home .corner-image-bottom-right img {
@@ -375,30 +397,110 @@ p {
   }
 }
 
-#home .masthead {
-  min-height: 30rem;
-  display: table;
-  width: 100%;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+@media (max-width: 600px) and (max-width: 600px) {
+  #home .masthead .container h1 {
+    font-size: 6rem;
+  }
 }
 
-#home .masthead h1 {
-  font-size: 12rem;
+#carousel-intro {
+  height: 100vh;
+}
+
+#carousel-intro #carousel-header {
+  font-size: 4rem;
   color: black;
 }
 
-#home .masthead #explore {
-  background-color: #34a060;
-  border-color: #34a060;
-  font-size: 1.5rem;
-  padding: 0.8rem 1.8rem 0.8rem 1.8rem;
-  cursor: pointer;
+#carousel-intro #intro-type {
+  margin-top: 2rem;
+  width: 35vw;
 }
 
-@media (min-width: 992px) {
-  #home .masthead .masthead h1 {
-    font-size: 5.5rem;
+#carousel-intro #intro-type .intro-types {
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#carousel-intro #intro-type .intro-types.active {
+  background-color: #34a060;
+}
+
+#carousel-intro #carouselControls .carousel-inner {
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#carousel-intro #carouselControls .carousel-inner #carousel-outdoor,
+#carousel-intro #carouselControls .carousel-inner #carousel-hanging {
+  display: none;
+}
+
+#carousel-intro #carouselControls .carousel-inner .card {
+  margin: 0 0.5em;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+#carousel-intro #carouselControls .carousel-inner .card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#carousel-intro #carouselControls .carousel-inner .card .card-body {
+  margin-top: 1rem;
+}
+
+#carousel-intro #carouselControls .carousel-inner .card .card-body .card-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 300;
+}
+
+#carousel-intro #carouselControls .carousel-inner .card .card-body .card-text {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+#carousel-intro #carouselControls .carousel-inner .carousel-inner {
+  padding: 1em;
+}
+
+#carousel-intro #carouselControls .carousel-inner .carousel-control-prev,
+#carousel-intro #carouselControls .carousel-inner .carousel-control-next {
+  background-color: #34a060;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  top: 50%;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  #carousel-intro #carouselControls .carousel-inner .card img {
+    height: 23em;
+  }
+}
+
+@media (max-width: 768px) {
+  #carousel-intro #carousel-header {
+    margin-top: 5rem;
+    font-size: 3.5rem;
+    color: black;
   }
 }
 /*# sourceMappingURL=style.css.map */
