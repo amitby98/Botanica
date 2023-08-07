@@ -241,21 +241,90 @@ $(document).ready(function () {
 });
 
 //////// Map Function
-let map;
-async function initMap() {
-  const position = { lat: 31.24, lng: 35.04 };
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-  map = new Map(document.getElementById("map"), {
-    zoom: 6,
-    center: position,
-    mapId: "my-project-botanica-395208",
-  });
-  const marker = new AdvancedMarkerElement({
-    map: map,
-    position: position,
-    draggable: true,
-  });
-}
+// let map;
+// let infowindow;
+// async function initMap() {
+//   const position = { lat: 31.24, lng: 35.04 };
+//   const { Map } = await google.maps.importLibrary("maps");
+//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+//   map = new Map(document.getElementById("map"), {
+//     zoom: 6,
+//     center: position,
+//     mapId: "my-project-botanica-395208",
+//   });
+ 
+//   const cities = [
+//     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 }, 
+//     { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
+//     { name: "Haifa", lat: 32.7940, lng: 34.9896 },
+    
+//   ];
+//    infoWindow = new google.maps.InfoWindow({
+//   });
 
-initMap();
+
+//   cities.forEach((city) => {
+//     const marker = new AdvancedMarkerElement({
+//       map: map,
+//       position: { lat: city.lat, lng: city.lng },
+//       title: city.name,
+//     });
+// })
+// marker.addListener("mouseover", () => {
+//   showInfoWindow(city.name, marker);
+// });
+
+// marker.addListener("mouseout", () => {
+//   hideInfoWindow();
+// });
+
+// // Function to show the info window with the city name
+// function showInfoWindow(cityName, marker) {
+// const content = `<div><h3>${cityName}</h3><p>BOTANICA ${cityName}.</p></div>`;
+//   infowindow.setContent(content);
+// }
+// infowindow.open(map, marker);
+
+
+// // Function to hide the info window
+// function hideInfoWindow() {
+//   infowindow.close();
+// }
+// };
+
+
+// initMap();
+let map;
+      let infowindow;
+
+      async function initMap() {
+        const position = { lat: 31.24, lng: 35.04 };
+
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary(
+          "marker"
+        );
+        map = new Map(document.getElementById("map"), {
+          zoom: 6,
+          center: position,
+          mapId: "my-project-botanica-395208",
+        });
+
+        const cities = [
+          { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
+          { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
+          { name: "Haifa", lat: 32.7940, lng: 34.9896 },
+          // Add more cities with their respective coordinates
+        ];
+
+        infowindow = new google.maps.InfoWindow();
+
+        cities.forEach((city) => {
+          const marker = new AdvancedMarkerElement({
+            map: map,
+            position: { lat: city.lat, lng: city.lng },
+            title: `Botanica shop, ${city.name}`,
+          });
+        });
+      }
+      initMap();
