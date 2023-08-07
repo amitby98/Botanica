@@ -1,5 +1,123 @@
-@media (min-width: 1025px) {
-  .h-custom {
-    height: 100vh !important;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
   }
-}
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .checkout-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+  
+  .item-info {
+    flex: 1;
+  }
+  
+  .item-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .item-price {
+    font-size: 16px;
+    color: #777;
+  } 
+  .cart-details {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .list-group-item {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .coupon-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .coupon-form input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff5a5a;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    border-radius: 25px; /* Make the checkout button circular */
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #ff7878;
+  }
+  
+  footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+  }
+  .return-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .return-button a {
+    display: inline-block;
+    padding: 8px 15px; /* Adjust the padding to make the button smaller */
+    background-color: lightslategray;
+    color: white;
+    border-radius: 25px;
+    border: 2px solid gray; /* Change the border color to match the background color */
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .return-button a:hover {
+    background-color: red;
+    border: 2px solid red; /* Change the border color on hover to red */
+  }
+  @media screen and (max-width: 768px) {
+    .return-button {
+      top: 10px;
+      left: 10px;
+    }
+  
+    .return-button a {
+      padding: 6px 12px;
+    }
+  }
+  /* Additional styles can be added based on your design requirements */
+  
