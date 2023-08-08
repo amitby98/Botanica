@@ -127,3 +127,10 @@ body {
   width: 100%;
   margin-top: 36px;
 }
+
+@media (max-width:768px){
+  #map{
+    height: 20rem;
+  }
+  
+}
