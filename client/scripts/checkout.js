@@ -15,7 +15,7 @@ function updateCart() {
   checkoutTotal.textContent = `$${(cartTotal + 20).toFixed(2)}`;
 }
 
-function createCartItem(name, price, description, imageUrl) {
+function createCartItem(name, price, description, imageUrl, quantity = 1) {
   const cartItem = document.createElement('div');
   cartItem.className = 'card mb-3';
   cartItem.innerHTML = `
@@ -29,8 +29,11 @@ function createCartItem(name, price, description, imageUrl) {
           </div>
         </div>
         <div class="d-flex flex-row align-items-center">
+          <div style="width: 50px">
+            <h5 class="fw-normal mb-0">${Math.floor(quantity)}x</h5>
+          </div>
           <div style="width: 80px">
-            <h5 class="mb-0" id="${name}Price">$${price.toFixed(2)}</h5>
+            <h5 class="mb-0" id="${name}Price">$${(price * quantity).toFixed(0)}</h5>
           </div>
         </div>
       </div>
@@ -38,8 +41,8 @@ function createCartItem(name, price, description, imageUrl) {
   `;
 
   shoppingCart.appendChild(cartItem);
-  itemsInCart++;
-  cartTotal += price;
+  itemsInCart += Math.floor(quantity);
+  cartTotal += price * Math.floor(quantity);
   updateCart();
 }
 
@@ -48,23 +51,27 @@ createCartItem(
   'Iphone 11 pro',
   900,
   'High-end smartphone with advanced features.',
-  'https://example.com/iphone.jpg'
+  'https://example.com/iphone.jpg',
+  2 // Example quantity
 );
 createCartItem(
   'Samsung galaxy Note 10',
   900,
   'Premium Android smartphone with stylus.',
-  'https://example.com/samsung-galaxy.jpg'
+  'https://example.com/samsung-galaxy.jpg',
+  1 // Example quantity
 );
 createCartItem(
   'Canon EOS M50',
   1199,
   'Mirrorless camera for photography enthusiasts.',
-  'https://example.com/canon-camera.jpg'
+  'https://example.com/canon-camera.jpg',
+  1 // Example quantity
 );
 createCartItem(
   'MacBook Pro',
   1799,
   'Powerful laptop for creative professionals.',
-  'https://example.com/macbook.jpg'
+  'https://example.com/macbook.jpg',
+  2 // Example quantity
 );
