@@ -3,12 +3,17 @@ function renderProducts(products) {
   for (const product of products) {
     $("#products").html(
       $("#products").html() +
-        `  <div>
-        <p>${product.name}</p>
-        <p>${product.category}</p>
-        <p>${product.price}</p>
-        <img src=${product.imageUrl} ></img>
-      </div>`
+        ` <div class="product1">
+        <div class="product-card">
+          <button class="add-to-cart-button"><i class="fa-solid fa-bag-shopping"></i></button>
+          <img src=${product.imageUrl} alt="Plant1" class="product-image"> 
+        </div>
+        <div>
+          <h3>${product.name}</h3>
+          <h3>${product.category}</h3>
+          <h3>$${product.price}</h3>
+        </div>
+          </div>`
     );
   }
 }
