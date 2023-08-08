@@ -240,6 +240,28 @@ $(document).ready(function () {
   });
 });
 
+// $(document).ready(function () {
+//   console.log("Document ready");
+//   // Show the initially active carousel
+//   // $("#carousel-indoor").addClass("active");
+
+//   // Handle the click event for each category button
+//   $(".intro-types").click(function (e) {
+//     e.preventDefault();
+
+//     // Get the target carousel ID from the href attribute of the clicked button
+//     var targetCarousel = $(this).attr("href");
+
+//     // Remove "active" class from all carousels
+//     $(`${targetCarousel}.carousel-item`).removeClass("active");
+
+//     // Add "active" class to the target carousel
+//     $(`${targetCarousel}.carousel-item`).addClass("active");
+//     console.log(targetCarousel);
+//     console.log(`${targetCarousel} .carousel-item`);
+//   });
+// });
+
 //////// Map Function
 // let map;
 // let infowindow;

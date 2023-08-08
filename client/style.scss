@@ -384,11 +384,35 @@ p {
       width: 90vw;
       display: flex;
       align-items: center;
+      padding: 1em;
 
-      #carousel-outdoor,
-      #carousel-hanging {
-        display: none;
-      }
+      // #carousel-outdoor {
+      //   display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
+      // #carousel-indoor {
+      //   // display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
+      // #carousel-hanging {
+      //   display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
 
       .card {
         margin: 0 0.5em;
@@ -414,9 +438,6 @@ p {
             font-size: 1rem;
           }
         }
-      }
-      .carousel-inner {
-        padding: 1em;
       }
 
       .carousel-control-prev,
