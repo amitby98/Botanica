@@ -3,9 +3,12 @@ function renderProducts(products) {
   for (const product of products) {
     $("#products").html(
       $("#products").html() +
-        `
-              <div>${product.name}</div>
-            `
+        `  <div>
+        <p>${product.name}</p>
+        <p>${product.category}</p>
+        <p>${product.price}</p>
+        <img src=${product.imageUrl} ></img>
+      </div>`
     );
   }
 }
