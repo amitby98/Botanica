@@ -45,11 +45,7 @@ body {
 .contact-page-form.contact-form textarea {
   height: 110px;
 }
-/* .contact-page-form.contact-form input[type="submit"] {
-  background: #603808;
-  width: 150px;
-  border-color: #603808;
-} */
+
 .contact-info-icon i {
   font-size: 48px;
   color: #665b4e;
@@ -127,8 +123,7 @@ body {
 }
 
 #map {
-  height: 80%;
+  height: 88%;
   width: 100%;
   margin-top: 36px;
-
 }
