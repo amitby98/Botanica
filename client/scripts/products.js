@@ -1,21 +1,42 @@
 function renderProducts(products) {
   $("#products").html("");
   for (const product of products) {
-    $("#products").html(
-      $("#products").html() +
-        ` <div class="product1">
-        <div class="product-card">
-          <button class="add-to-cart-button"><i class="fa-solid fa-bag-shopping"></i></button>
-          <img src=${product.imageUrl} alt="Plant1" class="product-image"> 
+    $("#products").append(` 
+    <div class="row">
+    <div class="mb-3">
+      <div class="product-box">
+        <div class="product-inner-box position-relative">
+          <div class="icons position-absolute">
+            <a href="#" class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
+          </div>
+
+          <img src="${product.imageUrl}" alt="Plant1" class="img-fluid img-thumbnail" />
         </div>
-        <div>
-          <h3>${product.name}</h3>
-          <h3>${product.category}</h3>
-          <h3>$${product.price}</h3>
+
+        <div class="product-info">
+          <div class="product-name">
+            <h2>${product.name}</h2>
+          </div>
+          <div class="product-category">
+            <h3>${product.category}</h3>
+          </div>
+          <div class="product-price">$<span>${product.price}</span></div>
         </div>
-          </div>`
-    );
+      </div>
+    </div>
+  </div>
+  `);
   }
+
+  let cards = document.querySelectorAll(".product-box");
+  [...cards].forEach(card => {
+    card.addEventListener("mouseover", function () {
+      card.classList.add("is-hover");
+    });
+    card.addEventListener("mouseleave", function () {
+      card.classList.remove("is-hover");
+    });
+  });
 }
 
 $.ajax({
