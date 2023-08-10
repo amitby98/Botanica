@@ -34,7 +34,8 @@ body {
   border: #ffffff00;
 }
 
-.navbar .btn:hover, .navbar .btn.selected,
+.navbar .btn:hover,
+.navbar .btn.selected,
 .navbar .nav-link:hover,
 .navbar .nav-link.selected {
   background-color: #559c73;
@@ -98,7 +99,7 @@ p {
 
 .buttons:active {
   -webkit-transform: scale(0.95);
-          transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .buttons:focus {
@@ -116,15 +117,15 @@ p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding: 0 50px;
   height: 100%;
   text-align: center;
@@ -142,7 +143,7 @@ p {
   background-color: #fff;
   border-radius: 10px;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
   min-height: 420px;
@@ -164,7 +165,7 @@ p {
 
 .modal .container.right-panel-active .sign-in-container {
   -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .modal .sign-up-container {
@@ -176,11 +177,11 @@ p {
 
 .modal .container.right-panel-active .sign-up-container {
   -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  transform: translateX(100%);
   opacity: 1;
   z-index: 5;
   -webkit-animation: show 0.6s;
-          animation: show 0.6s;
+  animation: show 0.6s;
 }
 
 @-webkit-keyframes show {
@@ -225,7 +226,7 @@ p {
 
 .modal .container.right-panel-active .overlay-container {
   -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .modal .overlay {
@@ -241,7 +242,7 @@ p {
   height: 100%;
   width: 200%;
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
   -webkit-transition: -webkit-transform 0.6s ease-in-out;
   transition: -webkit-transform 0.6s ease-in-out;
   transition: transform 0.6s ease-in-out;
@@ -250,7 +251,7 @@ p {
 
 .modal .container.right-panel-active .overlay {
   -webkit-transform: translateX(50%);
-          transform: translateX(50%);
+  transform: translateX(50%);
 }
 
 .modal .overlay-panel {
@@ -259,22 +260,22 @@ p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding: 0 40px;
   text-align: center;
   top: 0;
   height: 100%;
   width: 50%;
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
   -webkit-transition: -webkit-transform 0.6s ease-in-out;
   transition: -webkit-transform 0.6s ease-in-out;
   transition: transform 0.6s ease-in-out;
@@ -283,23 +284,23 @@ p {
 
 .modal .overlay-left {
   -webkit-transform: translateX(-20%);
-          transform: translateX(-20%);
+  transform: translateX(-20%);
 }
 
 .modal .container.right-panel-active .overlay-left {
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
 }
 
 .modal .overlay-right {
   right: 0;
   -webkit-transform: translateX(0);
-          transform: translateX(0);
+  transform: translateX(0);
 }
 
 .modal .container.right-panel-active .overlay-right {
   -webkit-transform: translateX(20%);
-          transform: translateX(20%);
+  transform: translateX(20%);
 }
 
 .modal select {
@@ -435,8 +436,8 @@ p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 1em;
 }
 
@@ -461,8 +462,8 @@ p {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   font-weight: 300;
 }
 
