@@ -13,23 +13,21 @@ function addNavbar() {
         <li class="nav-item mx-2">
           <a class="nav-link ${currentPage === "" ? "selected" : ""}" href="/">Home</a>
         </li>
-        <li class="nav-item mx-2 dropdown">
-          <a class="nav-link dropdown-toggle ${currentPage === "products.html" ? "selected" : ""}" href="#" role="button" data-bs-toggle="dropdown">Products</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="./products.html">Plants</a></li>
-            <li><a class="dropdown-item" href="./products.html">Extras</a></li>
-            <li><a class="dropdown-item" href="./products.html">Sale</a></li>
-          </ul>
-        </li>
         <li class="nav-item mx-2">
+          <a class="nav-link ${currentPage === "products.html" ? "selected" : ""}" href="./products.html">Products</a>
+        </li> <li class="nav-item mx-2">
           <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
       </ul>
       <ul class="navbar-nav me-right">
-        <!-- <input class="form-control me-2" type="text" placeholder="Search" /> -->
-        <li class="nav-item mx-2">
-          <a class="nav-link" id="search" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
-        </li>
+        ${
+          currentPage === "products.html"
+            ? `<li class="nav-item mx-2">
+        <a class="nav-link" id="search" data-bs-toggle="modal" data-bs-target="#search-modal" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
+      </li>`
+            : ""
+        }
+        
         <li class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -98,6 +96,23 @@ function addNavbar() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="search-modal" role="dialog" aria-labelledby="modalSearchTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSearchTitle">Modal title</h5>
+        <button data-bs-dismiss="modal" class="btn-close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -237,3 +252,117 @@ if (userString) {
   $("#login-overlay").attr("style", "display: none;");
   $("#profile-link").attr("style", "display: block;");
 }
+
+//Carousel Functionality
+$(document).ready(function () {
+  $("#intro-type .intro-types").on("click", function () {
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+  });
+});
+
+// $(document).ready(function () {
+//   console.log("Document ready");
+//   // Show the initially active carousel
+//   // $("#carousel-indoor").addClass("active");
+
+//   // Handle the click event for each category button
+//   $(".intro-types").click(function (e) {
+//     e.preventDefault();
+
+//     // Get the target carousel ID from the href attribute of the clicked button
+//     var targetCarousel = $(this).attr("href");
+
+//     // Remove "active" class from all carousels
+//     $(`${targetCarousel}.carousel-item`).removeClass("active");
+
+//     // Add "active" class to the target carousel
+//     $(`${targetCarousel}.carousel-item`).addClass("active");
+//     console.log(targetCarousel);
+//     console.log(`${targetCarousel} .carousel-item`);
+//   });
+// });
+
+//////// Map Function
+// let map;
+// let infowindow;
+// async function initMap() {
+//   const position = { lat: 31.24, lng: 35.04 };
+//   const { Map } = await google.maps.importLibrary("maps");
+//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+//   map = new Map(document.getElementById("map"), {
+//     zoom: 6,
+//     center: position,
+//     mapId: "my-project-botanica-395208",
+//   });
+
+//   const cities = [
+//     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
+//     { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
+//     { name: "Haifa", lat: 32.7940, lng: 34.9896 },
+
+//   ];
+//    infoWindow = new google.maps.InfoWindow({
+//   });
+
+//   cities.forEach((city) => {
+//     const marker = new AdvancedMarkerElement({
+//       map: map,
+//       position: { lat: city.lat, lng: city.lng },
+//       title: city.name,
+//     });
+// })
+// marker.addListener("mouseover", () => {
+//   showInfoWindow(city.name, marker);
+// });
+
+// marker.addListener("mouseout", () => {
+//   hideInfoWindow();
+// });
+
+// // Function to show the info window with the city name
+// function showInfoWindow(cityName, marker) {
+// const content = `<div><h3>${cityName}</h3><p>BOTANICA ${cityName}.</p></div>`;
+//   infowindow.setContent(content);
+// }
+// infowindow.open(map, marker);
+
+// // Function to hide the info window
+// function hideInfoWindow() {
+//   infowindow.close();
+// }
+// };
+
+// initMap();
+let map;
+let infowindow;
+
+async function initMap() {
+  const position = { lat: 31.24, lng: 35.04 };
+
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  map = new Map(document.getElementById("map"), {
+    zoom: 6,
+    center: position,
+    mapId: "my-project-botanica-395208",
+  });
+
+  const cities = [
+    { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
+    { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
+    { name: "Haifa", lat: 32.794, lng: 34.9896 },
+    // Add more cities with their respective coordinates
+  ];
+
+  infowindow = new google.maps.InfoWindow();
+
+  cities.forEach(city => {
+    const marker = new AdvancedMarkerElement({
+      map: map,
+      position: { lat: city.lat, lng: city.lng },
+      title: `Botanica shop, ${city.name}`,
+    });
+  });
+}
+initMap();

@@ -3,6 +3,7 @@
 * {
   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-family: "Noto Sans", sans-serif;
+  // box-sizing: border-box;
 }
 
 :root,
@@ -14,10 +15,6 @@ body {
 
 .navbar {
   // box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
-
-  // .dropdown-item {
-  //   background-color: white;
-  // }
 
   .navbar-brand {
     font-size: 1.8rem;
@@ -32,10 +29,6 @@ body {
   .nav-link {
     font-size: 1.4rem;
     font-weight: lighter;
-
-    // &:focus {
-    //   background-color: #559c73;
-    // }
   }
 
   #profile-link {
@@ -272,25 +265,7 @@ p {
 }
 
 ///////////// Home
-// #welcome-section {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   height: 100vh;
-
-//   h1 {
-//     padding-top: 60px;
-
-//     font-size: 48px;
-//   }
-
-//   h3 {
-//     font-size: 20px;
-//   }
-// }
-
 #home {
-  // position: absolute;
   height: 90vh;
   margin-bottom: 1rem;
 
@@ -303,8 +278,8 @@ p {
 
   .corner-image-bottom-left img,
   .corner-image-bottom-right img {
-    min-width: 70%;
-    height: 95vh;
+    min-width: 75%;
+    height: 90vh;
   }
 
   .corner-image-bottom-left {
@@ -319,19 +294,167 @@ p {
     }
   }
 
+  .masthead {
+    min-height: 30rem;
+    display: table;
+    width: 100%;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    z-index: 1;
+    position: relative;
+
+    h1 {
+      font-size: 12rem;
+      color: black;
+    }
+
+    #explore {
+      background-color: #34a060;
+      border-color: #34a060;
+      font-size: 1.5rem;
+      padding: 0.8rem 1.8rem 0.8rem 1.8rem;
+      cursor: pointer;
+    }
+  }
   @media (min-width: 600px) and (max-width: 768px) {
     margin-bottom: 1.5rem;
-
     .corner-image-bottom-left,
     .corner-image-bottom-right {
-      max-width: 100%; /* On smaller screens, make the image full-width */
+      max-width: 100%;
+    }
+    .corner-image-bottom-left img,
+    .corner-image-bottom-right img {
+      min-width: 70%;
+      height: 95vh;
     }
   }
   @media (min-width: 780px) and (max-width: 1000px) {
     margin-bottom: 2.5rem;
   }
+  @media (max-height: 850px) and (min-width: 600px) {
+    margin-bottom: -0.3rem;
+  }
   @media (max-width: 600px) {
     margin-bottom: 0;
+
+    @media (max-width: 600px) {
+      .masthead .container h1 {
+        font-size: 6rem;
+      }
+    }
+  }
+}
+
+/////////// Carousel
+#carousel-intro {
+  height: 100vh;
+
+  #carousel-header {
+    font-size: 4rem;
+    color: black;
+  }
+
+  #intro-type {
+    margin-top: 2rem;
+    width: 35vw;
+
+    .intro-types {
+      background-color: transparent;
+      border: none;
+      color: black;
+      font-weight: bold;
+      font-size: 1.2rem;
+
+      &.active {
+        background-color: #34a060;
+        // background-color: #a4c798;
+      }
+    }
+  }
+
+  #carouselControls {
+    .carousel-inner {
+      width: 90vw;
+      display: flex;
+      align-items: center;
+      padding: 1em;
+
+      // #carousel-outdoor {
+      //   display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
+      // #carousel-indoor {
+      //   // display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
+      // #carousel-hanging {
+      //   display: none;
+
+      //   .carousel-item.active {
+      //     display: flex;
+      //     flex-direction: row;
+      //     justify-content: center;
+      //   }
+      // }
+
+      .card {
+        margin: 0 0.5em;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .card-body {
+          margin-top: 1rem;
+          .card-title {
+            display: flex;
+            justify-content: center;
+            font-weight: 300;
+          }
+          .card-text {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        background-color: #34a060;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        top: 50%;
+        margin: 1rem;
+      }
+      @media (min-width: 768px) {
+        .card img {
+          height: 23em;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    #carousel-header {
+      margin-top: 5rem;
+      font-size: 3.5rem;
+      color: black;
+    }
   }
 }
 

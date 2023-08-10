@@ -1,0 +1,119 @@
+#products-header {
+  font-size: 4rem;
+  color: black;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  #products-header {
+    margin-top: 5rem;
+    font-size: 3.5rem;
+    color: black;
+  }
+}
+/* //////////////// Products */
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem 0 3rem 0;
+  justify-content: center;
+  max-width: 100vw;
+}
+.row {
+  margin: 0.1rem;
+}
+.product-inner-box .icons {
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  top: -3%;
+  transition: all 0.2s ease-in-out, transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0;
+}
+.product-inner-box .icons a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #f2f2f1;
+}
+.product-inner-box .onsale .badge {
+  background: black;
+  font-size: 12px;
+  padding: 5px 14px;
+  top: 0px;
+  position: absolute;
+}
+/* .product-inner-box .onsale .badge:before {
+  border-width: 10px 0px 0px 10px;
+  border-color: transparent transparent transparent black;
+  content: "";
+  position: absolute;
+  right: -8px;
+  width: 0;
+  bottom: 0;
+  border-style: solid;
+}
+.product-inner-box .onsale .badge:after {
+  border-width: 10px 8px 0px 10px;
+  border-color: black transparent transparent;
+  content: "";
+  position: absolute;
+  right: -8px;
+  width: 0;
+  top: 0;
+  border-style: solid;
+} */
+.product-inner-box img {
+  box-shadow: 0 33px 61px -29px rgba(0 0 0 / 26%);
+  height: 350px;
+  width: 20rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+.product-box.is-hover .icons {
+  transform: rotateY(-3%);
+  top: 3%;
+  opacity: 1;
+}
+/* .cart-btn {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.2s ease-in-out, transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.product-box.is-hover .cart-btn {
+  opacity: 1;
+} */
+.product-name h2 {
+  font-size: 1em;
+  font-weight: 400;
+  color: black;
+}
+
+.product-category h3 {
+  font-size: 1em;
+  font-weight: 400;
+  color: #4d4f48;
+}
+
+/* //////////////// Filter */
+/* .filters {
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  max-width: 15vw;
+  justify-content: space-around;
+  float: left;
+  margin-left: 3rem;
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+} */

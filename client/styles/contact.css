@@ -45,11 +45,7 @@ body {
 .contact-page-form.contact-form textarea {
   height: 110px;
 }
-/* .contact-page-form.contact-form input[type="submit"] {
-  background: #603808;
-  width: 150px;
-  border-color: #603808;
-} */
+
 .contact-info-icon i {
   font-size: 48px;
   color: #665b4e;
@@ -122,9 +118,19 @@ body {
   margin-top: 30px;
 }
 
-.contact-page-map {
-  margin-top: 36px;
-}
 .contact-page-form form {
   padding: 20px 15px 0;
+}
+
+#map {
+  height: 88%;
+  width: 100%;
+  margin-top: 36px;
+}
+
+@media (max-width:768px){
+  #map{
+    height: 20rem;
+  }
+  
 }

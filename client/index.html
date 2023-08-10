@@ -13,20 +13,204 @@
     <title>Botanica</title>
   </head>
   <body>
-    <!-- <section class="container" id="welcome-section">
-      <h1>Plant</h1>
-      <h3>Shop where you can buy any plant and we will deliever it straight to your door</h3>
-      <button>Explore plant</button>
-    </section> -->
     <div class="container" id="home">
+      <header class="masthead d-flex align-items-center">
+        <div class="container px-4 px-lg-5 text-center">
+          <h1 class="mb-4">Plants</h1>
+          <h3 class="mb-5">
+            Shop where you can buy any plant <br />
+            and we will deliever it straight to your door
+          </h3>
+          <a class="btn btn-primary btn-xl" id="explore" role="button" href="#carousel-intro">Explore plants</a>
+        </div>
+      </header>
       <div class="row">
         <div class="col-6 corner-image-bottom-left">
-          <!-- Your bottom-left image goes here -->
           <img src="./src/home2.png" alt="Bottom Left Image" />
         </div>
         <div class="col-6 corner-image-bottom-right">
-          <!-- Your bottom-right image goes here -->
           <img src="./src/home.png" alt="Bottom Right Image" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-around" id="carousel-intro">
+      <header class="masthead d-flex align-items-center">
+        <div class="container px-4 px-lg-5 text-center d-flex flex-column align-items-center" id="intro-container">
+          <h1 id="carousel-header" class="mb-4">Plants suitable for you</h1>
+          <div class="d-flex justify-content-evenly" id="intro-type">
+            <a class="btn btn-primary btn-xl intro-types active" role="button" href="#carousel-indoor">Indoor</a>
+            <!-- <a class="btn btn-primary btn-xl intro-types" role="button" href="#carousel-hanging">Hanging</a> -->
+            <a class="btn btn-primary btn-xl intro-types" role="button" href="#carousel-outdoor">Outdoor</a>
+          </div>
+        </div>
+      </header>
+      <div id="carouselControls" class="carousel slide d-flex justify-content-center" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- <div id="carousel-indoor"> -->
+          <div class="carousel-item active">
+            <div class="cards-wrapper d-flex justify-content-center">
+              <div class="card">
+                <img src="./src/indoor1.png" class="card-img-top" alt="plant1" />
+                <div class="card-body">
+                  <h5 class="card-title">Calathea Concinnas</h5>
+                  <p class="card-text">$20</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="./src/indoor2.png" class="card-img-top" alt="plant2" />
+                <div class="card-body">
+                  <h5 class="card-title">Snake Vine</h5>
+                  <p class="card-text">$25</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="./src/indoor3.png" class="card-img-top" alt="plant3" />
+                <div class="card-body">
+                  <h5 class="card-title">Peace Lily</h5>
+                  <p class="card-text">$14</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="cards-wrapper d-flex justify-content-center">
+              <div class="card">
+                <img src="./src/indoor5.png" class="card-img-top" alt="plant4" />
+                <div class="card-body">
+                  <h5 class="card-title">Spider Ivy</h5>
+                  <p class="card-text">$30</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="./src/indoor4.png" class="card-img-top" alt="plant5" />
+                <div class="card-body">
+                  <h5 class="card-title">Rubber Tree</h5>
+                  <p class="card-text">$45</p>
+                </div>
+              </div>
+              <div class="card d-none d-md-block">
+                <img src="./src/indoor6.png" class="card-img-top" alt="plant6" />
+                <div class="card-body">
+                  <h5 class="card-title">Pothos Vine</h5>
+                  <p class="card-text">$35</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- <div id="carousel-hanging">
+            <div class="carousel-item">
+              <div class="cards-wrapper">
+                <div class="card">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant1" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant2" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant3" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="cards-wrapper">
+                <div class="card">
+                  <img src="./src/plant5.png" class="card-img-top" alt="plant4" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant6.webp" class="card-img-top" alt="plant5" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant7.png" class="card-img-top" alt="plant6" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="carousel-outdoor">
+            <div class="carousel-item">
+              <div class="cards-wrapper">
+                <div class="card">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant1" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant2" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant2.webp" class="card-img-top" alt="plant3" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="cards-wrapper">
+                <div class="card">
+                  <img src="./src/plant5.png" class="card-img-top" alt="plant4" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant6.webp" class="card-img-top" alt="plant5" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+                <div class="card d-none d-md-block">
+                  <img src="./src/plant7.png" class="card-img-top" alt="plant6" />
+                  <div class="card-body">
+                    <h5 class="card-title">Calathea Concinnas</h5>
+                    <p class="card-text">$20</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <a class="carousel-control-prev" href="#carouselControls" role="button" data-bs-slide="prev">
+            <span aria-hidden="true"><i class="fa-solid fa-arrow-left fa-2xl" style="color: #ffffff"></i></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselControls" role="button" data-bs-slide="next">
+            <span id="icon2" aria-hidden="true"><i id="icon" class="fa-solid fa-arrow-right fa-2xl" style="color: #ffffff"></i></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
     </div>
