@@ -4,60 +4,34 @@
   }
 }
 
-#checkout{
+#checkout {
   background: #f2f2f1;
   border: none;
 }
-.card-body{
+.card-body {
   background-color: #34a060;
 }
-.card.bg-primary.text-white{
+.card.bg-primary.text-white {
   border-color: #f2f2f1;
 }
-#checkout-header{
+#checkout-header {
   font-size: 18px;
 }
-#options{
+#options {
   justify-content: space-around;
   width: 12rem;
 }
-#amount-div{
+#amount-div {
   display: flex;
 }
-.row{
+.row {
   margin-right: auto;
   margin-left: auto;
 }
 .fa-shop {
-  transition: transform 0.10s ease;
+  transition: transform 0.1s ease;
 }
 
 .fa-shop:hover {
   transform: scale(1.2);
 }
-
-
-button.btn.btn-info.btn-block.btn-lg{
-  background-color: #f2f2f1;
-  border-color: #f2f2f1;
-}
-button.btn.btn-danger.btn-sm.remove-item{
-  background-color: #f2f2f1;
-   border-color:#f2f2f1;
-  color: black;
-
-}
-button.btn.btn-secondary.btn-sm.increase-quantity{
-  background-color: #f2f2f1;
-  color: black;
-  border-color: #f2f2f1;
-}
-button.btn.btn-secondary.btn-sm.decrease-quantity{
-  background-color: #f2f2f1;
-  color: black;
-  border-color: #f2f2f1;
-}
-.d-flex.justify-content-between{
-  padding: 0.5rem;
-}
-
