@@ -44,15 +44,35 @@ function addNavbar() {
   </div>
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div>
-    <a class="checkout" href="/checkout.html" role="button">Checkout</a>
-  </div>
-</div>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+            <div>
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px" />
+            </div>
+            <div class="ms-3">
+              <h5>Iphone 11 pro</h5>
+              <p class="small mb-0">256GB, Navy Blue</p>
+            </div>
+          </div>
+          <div class="d-flex flex-row align-items-center" id="options">
+            <div id="amount-div">
+              <button class="btn btn-secondary btn-sm increase-quantity"><i class="fa-solid fa-circle-plus"></i></button>
+              <h5 class="fw-normal">2</h5>
+              <button class="btn btn-secondary btn-sm decrease-quantity"><i class="fa-solid fa-circle-minus"></i></button>
+            </div>
+            <h5 class="mb-0">$900</h5>
+            <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+        <!-- <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div> -->
+        <a id="checkout-cart" href="/checkout.html" role="button">Proceed to checkout</a>
+      </div>
+    </div>
 <div id="loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -514,7 +534,6 @@ async function initMap() {
     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
     { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
     { name: "Haifa", lat: 32.794, lng: 34.9896 },
-    // Add more cities with their respective coordinates
   ];
 
   infowindow = new google.maps.InfoWindow();
@@ -528,3 +547,42 @@ async function initMap() {
   });
 }
 initMap();
+
+//////// Cart Function
+$(document).ready(function () {
+  $(".increase-quantity").on("click", function () {
+    const quantityElement = $(this).siblings("h5");
+    let quantity = parseInt(quantityElement.text());
+    quantity++;
+    quantityElement.text(quantity);
+    updateTotal();
+  });
+
+  $(".decrease-quantity").on("click", function () {
+    const quantityElement = $(this).siblings("h5");
+    let quantity = parseInt(quantityElement.text());
+    if (quantity > 1) {
+      quantity--;
+      quantityElement.text(quantity);
+      updateTotal();
+    }
+  });
+
+  $(".remove-item").on("click", function () {
+    const listItem = $(this).closest(".d-flex.justify-content-between");
+    listItem.remove();
+    updateTotal();
+  });
+  function updateTotal() {
+    let total = 0;
+
+    $(".d-flex.justify-content-between").each(function () {
+      const quantity = parseInt($(this).find("h5").text());
+      const price = parseInt($(this).find(".mb-0").last().text().replace("$", ""));
+      const itemTotal = quantity * price;
+      total += itemTotal;
+    });
+
+    $("#total-amount").text("$" + total.toFixed(2));
+  }
+});
