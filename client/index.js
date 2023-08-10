@@ -20,10 +20,14 @@ function addNavbar() {
         </li>
       </ul>
       <ul class="navbar-nav me-right">
-        <!-- <input class="form-control me-2" type="text" placeholder="Search" /> -->
-        <li class="nav-item mx-2">
-          <a class="nav-link" id="search" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
-        </li>
+        ${
+          currentPage === "products.html"
+            ? `<li class="nav-item mx-2">
+        <a class="nav-link" id="search" data-bs-toggle="modal" data-bs-target="#search-modal" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
+      </li>`
+            : ""
+        }
+        
         <li class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -92,6 +96,23 @@ function addNavbar() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="search-modal" role="dialog" aria-labelledby="modalSearchTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSearchTitle">Modal title</h5>
+        <button data-bs-dismiss="modal" class="btn-close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -274,16 +295,15 @@ $(document).ready(function () {
 //     center: position,
 //     mapId: "my-project-botanica-395208",
 //   });
- 
+
 //   const cities = [
-//     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 }, 
+//     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
 //     { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
 //     { name: "Haifa", lat: 32.7940, lng: 34.9896 },
-    
+
 //   ];
 //    infoWindow = new google.maps.InfoWindow({
 //   });
-
 
 //   cities.forEach((city) => {
 //     const marker = new AdvancedMarkerElement({
@@ -307,46 +327,42 @@ $(document).ready(function () {
 // }
 // infowindow.open(map, marker);
 
-
 // // Function to hide the info window
 // function hideInfoWindow() {
 //   infowindow.close();
 // }
 // };
 
-
 // initMap();
 let map;
-      let infowindow;
+let infowindow;
 
-      async function initMap() {
-        const position = { lat: 31.24, lng: 35.04 };
+async function initMap() {
+  const position = { lat: 31.24, lng: 35.04 };
 
-        const { Map } = await google.maps.importLibrary("maps");
-        const { AdvancedMarkerElement } = await google.maps.importLibrary(
-          "marker"
-        );
-        map = new Map(document.getElementById("map"), {
-          zoom: 6,
-          center: position,
-          mapId: "my-project-botanica-395208",
-        });
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  map = new Map(document.getElementById("map"), {
+    zoom: 6,
+    center: position,
+    mapId: "my-project-botanica-395208",
+  });
 
-        const cities = [
-          { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
-          { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
-          { name: "Haifa", lat: 32.7940, lng: 34.9896 },
-          // Add more cities with their respective coordinates
-        ];
+  const cities = [
+    { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
+    { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
+    { name: "Haifa", lat: 32.794, lng: 34.9896 },
+    // Add more cities with their respective coordinates
+  ];
 
-        infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow();
 
-        cities.forEach((city) => {
-          const marker = new AdvancedMarkerElement({
-            map: map,
-            position: { lat: city.lat, lng: city.lng },
-            title: `Botanica shop, ${city.name}`,
-          });
-        });
-      }
-      initMap();
+  cities.forEach(city => {
+    const marker = new AdvancedMarkerElement({
+      map: map,
+      position: { lat: city.lat, lng: city.lng },
+      title: `Botanica shop, ${city.name}`,
+    });
+  });
+}
+initMap();

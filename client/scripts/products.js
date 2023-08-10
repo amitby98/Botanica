@@ -48,17 +48,18 @@ $.ajax({
   },
 });
 
-$("button").on("click", () => {
-  const searchValue = $("input#search").val();
+/////Search
+// $("button").on("click", () => {
+//   const searchValue = $("input#search").val();
 
-  $.ajax({
-    url: "api/products/search",
-    method: "POST",
-    data: JSON.stringify({ searchValue }),
-    contentType: "application/json",
-    dataType: "json",
-    success: data => {
-      renderProducts(data.products);
-    },
-  });
-});
+//   $.ajax({
+//     url: "api/products/search",
+//     method: "POST",
+//     data: JSON.stringify({ searchValue }),
+//     contentType: "application/json",
+//     dataType: "json",
+//     success: data => {
+//       renderProducts(data.products);
+//     },
+//   });
+// });
