@@ -17,12 +17,9 @@
 #checkout-header {
   font-size: 18px;
 }
-#options {
+.options {
   justify-content: space-around;
   width: 12rem;
-}
-#amount-div {
-  display: flex;
 }
 .row {
   margin-right: auto;

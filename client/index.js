@@ -62,14 +62,17 @@ function addNavbar() {
           <div class="d-flex flex-row align-items-center" id="options">
             <div id="amount-div">
               <button class="btn btn-secondary btn-sm increase-quantity"><i class="fa-solid fa-circle-plus"></i></button>
-              <h5 class="fw-normal">2</h5>
+              <h5 class="fw-normal">1</h5>
               <button class="btn btn-secondary btn-sm decrease-quantity"><i class="fa-solid fa-circle-minus"></i></button>
             </div>
             <h5 class="mb-0">$900</h5>
             <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash-alt"></i></button>
           </div>
         </div>
-        <!-- <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div> -->
+        <div class="d-flex justify-content-between">
+        <p class="mb-2">Subtotal</p>
+        <p class="mb-2" id="total-amount">$4798.00</p>
+        </div>
         <a id="checkout-cart" href="/checkout.html" role="button">Proceed to checkout</a>
       </div>
     </div>
@@ -573,13 +576,16 @@ $(document).ready(function () {
     listItem.remove();
     updateTotal();
   });
+
   function updateTotal() {
     let total = 0;
-
-    $(".d-flex.justify-content-between").each(function () {
-      const quantity = parseInt($(this).find("h5").text());
+    $("#options").each(function () {
+      const quantity = parseInt($(this).find(".fw-normal").text());
       const price = parseInt($(this).find(".mb-0").last().text().replace("$", ""));
       const itemTotal = quantity * price;
+      console.log(quantity);
+      console.log(price);
+      console.log(itemTotal);
       total += itemTotal;
     });
 
