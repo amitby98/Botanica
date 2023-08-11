@@ -1,4 +1,30 @@
-/* Custom styles for the shopping cart */
+
+.offcanvas-header {
+  background-color: #343a40;
+  color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.offcanvas-title {
+  margin-bottom: 0;
+  font-size: 1.25rem;
+}
+
+.offcanvas-close {
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.offcanvas-close:hover {
+  opacity: 1;
+}
 
 .cart-item {
   display: flex;
@@ -56,55 +82,18 @@
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 100px; /* Updated border radius */
+  border-radius: 100px;
   transition: background-color 0.3s;
   cursor: pointer;
   display: inline-block;
   margin: 0 auto;
   text-decoration: none;
-  outline: none; /* Remove blue underline on focus */
+  outline: none;
   text-decoration-color: none;
 }
 
 .Checkout:hover {
   background-color: gray;
   transition-delay: 0.03s;
-  text-decoration: none; /* Remove underline on hover */
-}
-.offcanvas-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ccc;
-}
-
-.offcanvas-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.offcanvas-close {
-  align-self: flex-end;
-  margin-top: -10px;
-  margin-right: -10px;
-  padding: 10px;
-  color: #666;
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-.offcanvas-close:hover {
-  color: #333;
-}
-
-.offcanvas-title-border {
-  width: 40px;
-  border-bottom: 2px solid #333;
-  margin-top: 5px;
+  text-decoration: none;
 }
