@@ -1,69 +1,45 @@
-let renderedOrders = [];
+const userData1 = JSON.parse(localStorage.getItem("user"));
+const userName = userData1 ? userData1.username : "";
+
+if (userName) {
+  const capitalizedUserName = userName.charAt(0).toUpperCase() + userName.slice(1);
+  $("#username").html(capitalizedUserName);
+} else {
+  $("#username").html("");
+}
+
 function addOrder(orders) {
-  renderedOrders = orders;
   $("#order-container").html("");
   for (const order of orders) {
-    $("#order-container").append(`
-      <div class="div-box">
-        <div class="date">
-        <h3>${order.timestamps}</h3>
-        </div>
-        <p>${order.items}</p>
-        <h3>${order.total}</h3>
-      </div>
-  `);
+    const orderDiv = $("<div>").addClass("div-box");
+    const dateDiv = $("<div>")
+      .addClass("date")
+      .html(`<h3>${moment(order.createdAt).format("DD/MM/YYYY HH:mm:ss")}</h3>`);
+    const itemsP = $("<p>").html(
+      order.items
+        .map(
+          item => `<span>${item.name}</span>
+     <span>Quantity: ${item.quantity}</span>
+     <span>Price: $${item.price}</span></br>`
+        )
+        .join("<br>")
+    );
+    const totalH3 = $("<h3>").text(`$${order.total}`);
+
+    orderDiv.append(dateDiv, itemsP, totalH3);
+    $("#order-container").append(orderDiv);
   }
 }
 
-//Add new order
-// function addOrder(date, content, total) {
-//   const container = document.getElementById("order-container");
-
-//   const divBox = document.createElement("div");
-//   divBox.classList.add("div-box");
-
-//   const dateDiv = document.createElement("div");
-//   dateDiv.classList.add("date");
-//   const dateH3 = document.createElement("h3");
-//   dateH3.textContent = date;
-//   dateDiv.appendChild(dateH3);
-
-//   const contentP = document.createElement("p");
-//   contentP.textContent = content;
-
-//   const totalH3 = document.createElement("h3");
-//   totalH3.textContent = total;
-
-//   divBox.appendChild(dateDiv);
-//   divBox.appendChild(contentP);
-//   divBox.appendChild(totalH3);
-
-//   container.appendChild(divBox);
-// }
-
-// addOrder();
-
-// $.ajax({
-//   url: "api/orders/:userId",
-//   method: "GET",
-//   success: data => {
-//     console.log(data);
-//     addOrder(data.orders);
-//   },
-// });
-
-const userId = "64d606938d7ea4db3ab2508d";
+// const userId = "64d68cfd23ae1b07ede62a90";
+const userData = JSON.parse(localStorage.getItem("user"));
+const userId = userData ? userData._id : "";
 
 $.ajax({
   url: "api/orders/" + userId,
   method: "GET",
   success: data => {
     console.log(data);
-    // data.orders.forEach(order => {
-    addOrder(order.items, order.total, order.userId);
-    // });
-  },
-  error: (xhr, status, error) => {
-    console.error(error);
+    addOrder(data);
   },
 });

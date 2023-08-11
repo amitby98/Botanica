@@ -18,6 +18,10 @@ const orderSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+orderSchema.methods.getFormattedCreatedAt = function () {
+  return moment(this.createdAt).format("DD/MM/YYYY HH:mm:ss");
+};
+
 const OrderModel = mongoose.model("orders", orderSchema);
 
 module.exports = { OrderModel };
