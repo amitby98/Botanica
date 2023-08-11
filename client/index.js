@@ -167,7 +167,6 @@ function addNavbar() {
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);
   $("#cart-nav-link").click(renderCartItems);
-
   $("#checkout-cart").click(() => {
     $("#checkout-card").attr("style", "display: initial");
     $("#checkout-cart").attr("style", "display: none");
