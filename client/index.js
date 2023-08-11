@@ -83,15 +83,7 @@ function addNavbar() {
           <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
       </ul>
-      <ul class="navbar-nav me-right">
-        ${
-          currentPage === "products.html"
-            ? `<li class="nav-item mx-2">
-        <a class="nav-link" id="search1" data-bs-toggle="modal" data-bs-target="#search-modal" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
-      </li>`
-            : ""
-        }
-        
+      <ul class="navbar-nav me-right">     
         <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -99,7 +91,7 @@ function addNavbar() {
         </li>
         <li class="nav-item mx-2">
           <a id="login-overlay" class="nav-link" data-bs-toggle="modal" href="#loginModal" role="button" aria-controls="loginModal"><i class="fa-solid fa-user"></i></a>
-          <a id="profile-link" class="nav-link" href="/profile.html">
+          <a id="profile-link" class="nav-link ${currentPage === "profile.html" ? "selected" : ""}" href="/profile.html">
             <i class="fa-solid fa-user"></i>
           </a>
         </li>

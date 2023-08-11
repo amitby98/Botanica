@@ -1,6 +1,7 @@
 #order-container {
   display: flex;
   margin-left: 3rem;
+  height: 100vh;
 }
 .profile-username {
   margin-left: 4rem;

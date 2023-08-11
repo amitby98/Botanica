@@ -11,6 +11,27 @@
     font-size: 3.5rem;
     color: black;
   }
+
+  #search-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #search-form {
+    display: flex;
+    flex-direction: column;
+  }
+  /* #search-form input {
+    width: 20rem;
+  } */
+  #filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #filter-form select {
+    width: 20rem;
+  }
 }
 /* //////////////// Products */
 #products {
@@ -104,15 +125,26 @@
 }
 
 /* //////////////// Search & Filter */
-#search-container,
-#filter-container {
+#search-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#search-button {
+  background-color: #559c73;
+  border: none;
 }
 #search-form,
 #filter-form {
   display: flex;
-  justify-content: space-between;
+  width: 50vw;
+  justify-content: center;
+}
+
+#search-input {
+  width: 50vw;
 }
 
 .form-group {
-  margin: 0 0.5rem 0 0.5rem;
+  margin: 0 0.5rem 1rem 0.5rem;
 }
