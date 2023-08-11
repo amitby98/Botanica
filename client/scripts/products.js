@@ -49,8 +49,8 @@ $.ajax({
 });
 
 /////Search
-// $("button").on("click", () => {
-//   const searchValue = $("input#search").val();
+// $("#search-button").on("click", () => {
+//   const searchValue = $("input#search-input").val();
 
 //   $.ajax({
 //     url: "api/products/search",
@@ -63,3 +63,20 @@ $.ajax({
 //     },
 //   });
 // });
+////////////////////
+$("#search-form").on("submit", function (e) {
+  e.preventDefault();
+  const searchValue = $("#search-input").val();
+  console.log(searchValue);
+
+  $.ajax({
+    url: "api/products/search",
+    method: "POST",
+    data: JSON.stringify({ searchValue }),
+    contentType: "application/json",
+    dataType: "json",
+    success: data => {
+      renderProducts(data.products);
+    },
+  });
+});

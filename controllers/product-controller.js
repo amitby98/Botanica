@@ -6,11 +6,12 @@ async function getAllProducts(req, res) {
 }
 
 async function getProductsByParameters(req, res) {
-  const { size, type, searchValue } = req.body;
+  const { light, size, type, searchValue } = req.body;
   const products = await ProductModel.find({
     name: { $regex: searchValue, $options: "i" },
     type,
     size,
+    light,
   });
   res.json({ products });
 }
