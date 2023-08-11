@@ -6,12 +6,22 @@ async function getAllProducts(req, res) {
 }
 
 async function getProductsByParameters(req, res) {
-  const { size, type, searchValue } = req.body;
-  const products = await ProductModel.find({
-    name: { $regex: searchValue, $options: "i" },
-    type,
-    size,
-  });
+  const { light, size, category, searchValue } = req.body;
+  const query = {};
+  if (searchValue) {
+    query.name = { $regex: searchValue, $options: "i" };
+  }
+  if (category) {
+    query.category = { $regex: category, $options: "i" };
+  }
+  if (size) {
+    query.size = { $regex: size, $options: "i" };
+  }
+  if (light) {
+    query.light = { $regex: light, $options: "i" };
+  }
+  console.log(query);
+  const products = await ProductModel.find(query);
   res.json({ products });
 }
 

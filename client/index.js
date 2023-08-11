@@ -1,6 +1,70 @@
 const currentPage = window.location.pathname.slice(1);
 
 function addNavbar() {
+  const checkoutHtml = `<div id='checkout-card' class="card bg-primary text-white rounded-3" style='display: none'>
+  <div class="card-body">
+    <div class="d-flex justify-content-center align-items-center mb-6">
+      <h5 class="mb-6">Card details</h5>
+    </div>
+
+    <p class="d-flex justify-content-center">
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+    </p>
+
+    <!-- Card details form -->
+    <form class="mt-4">
+      <div class="form-outline form-white mb-4">
+        <input type="text" id="typeName" class="form-control form-control-lg" siez="17" placeholder="Cardholder's Name" />
+        <label class="form-label" for="typeName">Cardholder's Name</label>
+      </div>
+
+      <div class="form-outline form-white mb-4">
+        <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+        <label class="form-label" for="typeText">Card Number</label>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="form-outline form-white">
+            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+            <label class="form-label" for="typeExp">Expiration</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-outline form-white">
+            <input type="password" id="typeText" class="form-control form-control-lg" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+            <label class="form-label" for="typeText">Cvv</label>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4" />
+    </form>
+
+    <div class="d-flex justify-content-between">
+      <p class="mb-2">Subtotal</p>
+      <p class="mb-2" id='checkout-total'>0$</p>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <p class="mb-2">Shipping</p>
+      <p class="mb-2">$20.00</p>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+      <p class="mb-2">Total(Incl. taxes)</p>
+      <p class="mb-2" id='total-with-shipping'>0$</p>
+    </div>
+
+    <button id='confirm-order' type="button" class="btn btn-info btn-block btn-lg">
+      <div class="d-flex justify-content-between">
+        <span>Checkout <i class="fa-regular fa-credit-card"></i></span>
+      </div>
+    </button>
+  </div>
+</div>`;
   const navbarHtml = `
   <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
@@ -19,23 +83,15 @@ function addNavbar() {
           <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
       </ul>
-      <ul class="navbar-nav me-right">
-        ${
-          currentPage === "products.html"
-            ? `<li class="nav-item mx-2">
-        <a class="nav-link" id="search" data-bs-toggle="modal" data-bs-target="#search-modal" type="button"> <i class="fa-solid fa-magnifying-glass"></i></a>
-      </li>`
-            : ""
-        }
-        
-        <li class="nav-item mx-2">
+      <ul class="navbar-nav me-right">     
+        <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="fa-solid fa-cart-shopping"></i>
           </a>
         </li>
         <li class="nav-item mx-2">
           <a id="login-overlay" class="nav-link" data-bs-toggle="modal" href="#loginModal" role="button" aria-controls="loginModal"><i class="fa-solid fa-user"></i></a>
-          <a id="profile-link" class="nav-link" href="/profile.html">
+          <a id="profile-link" class="nav-link ${currentPage === "profile.html" ? "selected" : ""}" href="/profile.html">
             <i class="fa-solid fa-user"></i>
           </a>
         </li>
@@ -44,15 +100,21 @@ function addNavbar() {
   </div>
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.</div>
-    <a class="checkout" href="/checkout.html" role="button">Checkout</a>
-  </div>
-</div>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="cart-items" class="justify-content-between">
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="mb-2 cartTotal">Subtotal</p>
+          <p class="mb-2 cartTotal" id="total-amount">$</p>
+        </div>
+        <button id="checkout-cart" href="#" role="button">Proceed to checkout</button>
+        ${checkoutHtml}
+      </div>
+    </div>
 <div id="loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -100,26 +162,124 @@ function addNavbar() {
     </div>
   </div>
 </div>
-<div class="modal fade" id="search-modal" role="dialog" aria-labelledby="modalSearchTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalSearchTitle">Modal title</h5>
-        <button data-bs-dismiss="modal" class="btn-close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 `;
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);
+  $("#cart-nav-link").click(renderCartItems);
+
+  $("#checkout-cart").click(() => {
+    $("#checkout-card").attr("style", "display: initial");
+    $("#checkout-cart").attr("style", "display: none");
+    $(".cartTotal").attr("style", "display: none");
+  });
+
+  $("#confirm-order").click(async () => {
+    const { _id } = JSON.parse(localStorage.getItem("user") || "{}");
+    if (!_id) {
+      return alert("Please login to complete you purchase");
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (cart.length === 0) {
+      return alert("Please add items to your cart");
+    }
+    let total = 0;
+
+    for (const cartItem of cart) {
+      total += cartItem.price * cartItem.quantity;
+    }
+
+    $.ajax({
+      url: "api/orders",
+      method: "POST",
+      data: JSON.stringify({ total, cart, userId: _id }),
+      contentType: "application/json",
+      dataType: "json",
+      success: data => {
+        alert("Order placed succesfully");
+        localStorage.removeItem("cart");
+        window.location.href = "/profile.html";
+      },
+    });
+  });
+}
+
+function renderCartItems() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  console.log(cart);
+  $("#cart-items").html("");
+  let total = 0;
+
+  for (const cartItem of cart) {
+    total += cartItem.price * cartItem.quantity;
+    const itemHtml = `<div id="${cartItem._id}" class="item d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+                <div>
+                  <img src="${cartItem.imageUrl}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px" />
+                </div>
+                <div class="ms-3">
+                  <h5>${cartItem.name}</h5>
+                  <p class="small mb-0">${cartItem.category}</p>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center" id="options">
+                <div id="amount-div">
+                  <button class="btn btn-secondary btn-sm increase-quantity"><i class="fa-solid fa-circle-plus"></i></button>
+                  <h5 class="fw-normal">${cartItem.quantity}</h5>
+                  <button class="btn btn-secondary btn-sm decrease-quantity"><i class="fa-solid fa-circle-minus"></i></button>
+                </div>
+                <h5 class="mb-0">$${cartItem.price}</h5>
+                <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>`;
+
+    $("#cart-items").append(itemHtml);
+  }
+  $("#total-amount").html(total + "$");
+  $("#checkout-total").html(total + "$");
+  $("#total-with-shipping").html(total + 20 + "$");
+
+  $("body")
+    .find("#cart-items .increase-quantity")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const index = cart.findIndex(p => p._id === productId);
+        cart[index].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems();
+      });
+    });
+
+  $("body")
+    .find("#cart-items .decrease-quantity")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const index = cart.findIndex(p => p._id === productId);
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems();
+      });
+    });
+
+  $("body")
+    .find("#cart-items .remove-item")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const updatedCart = cart.filter(p => p._id !== productId);
+        console.log({ updatedCart });
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        renderCartItems();
+      });
+    });
 }
 
 function addFooter() {
@@ -253,116 +413,26 @@ if (userString) {
   $("#profile-link").attr("style", "display: block;");
 }
 
-//Carousel Functionality
+//////// Cart Function
 $(document).ready(function () {
-  $("#intro-type .intro-types").on("click", function () {
-    $(this).addClass("active");
-    $(this).siblings().removeClass("active");
-  });
-});
-
-// $(document).ready(function () {
-//   console.log("Document ready");
-//   // Show the initially active carousel
-//   // $("#carousel-indoor").addClass("active");
-
-//   // Handle the click event for each category button
-//   $(".intro-types").click(function (e) {
-//     e.preventDefault();
-
-//     // Get the target carousel ID from the href attribute of the clicked button
-//     var targetCarousel = $(this).attr("href");
-
-//     // Remove "active" class from all carousels
-//     $(`${targetCarousel}.carousel-item`).removeClass("active");
-
-//     // Add "active" class to the target carousel
-//     $(`${targetCarousel}.carousel-item`).addClass("active");
-//     console.log(targetCarousel);
-//     console.log(`${targetCarousel} .carousel-item`);
-//   });
-// });
-
-//////// Map Function
-// let map;
-// let infowindow;
-// async function initMap() {
-//   const position = { lat: 31.24, lng: 35.04 };
-//   const { Map } = await google.maps.importLibrary("maps");
-//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-//   map = new Map(document.getElementById("map"), {
-//     zoom: 6,
-//     center: position,
-//     mapId: "my-project-botanica-395208",
-//   });
-
-//   const cities = [
-//     { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
-//     { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
-//     { name: "Haifa", lat: 32.7940, lng: 34.9896 },
-
-//   ];
-//    infoWindow = new google.maps.InfoWindow({
-//   });
-
-//   cities.forEach((city) => {
-//     const marker = new AdvancedMarkerElement({
-//       map: map,
-//       position: { lat: city.lat, lng: city.lng },
-//       title: city.name,
-//     });
-// })
-// marker.addListener("mouseover", () => {
-//   showInfoWindow(city.name, marker);
-// });
-
-// marker.addListener("mouseout", () => {
-//   hideInfoWindow();
-// });
-
-// // Function to show the info window with the city name
-// function showInfoWindow(cityName, marker) {
-// const content = `<div><h3>${cityName}</h3><p>BOTANICA ${cityName}.</p></div>`;
-//   infowindow.setContent(content);
-// }
-// infowindow.open(map, marker);
-
-// // Function to hide the info window
-// function hideInfoWindow() {
-//   infowindow.close();
-// }
-// };
-
-// initMap();
-let map;
-let infowindow;
-
-async function initMap() {
-  const position = { lat: 31.24, lng: 35.04 };
-
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-  map = new Map(document.getElementById("map"), {
-    zoom: 6,
-    center: position,
-    mapId: "my-project-botanica-395208",
+  $(".remove-item").on("click", function () {
+    const listItem = $(this).closest(".d-flex.justify-content-between");
+    listItem.remove();
+    updateTotal();
   });
 
-  const cities = [
-    { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
-    { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
-    { name: "Haifa", lat: 32.794, lng: 34.9896 },
-    // Add more cities with their respective coordinates
-  ];
-
-  infowindow = new google.maps.InfoWindow();
-
-  cities.forEach(city => {
-    const marker = new AdvancedMarkerElement({
-      map: map,
-      position: { lat: city.lat, lng: city.lng },
-      title: `Botanica shop, ${city.name}`,
+  function updateTotal() {
+    let total = 0;
+    $("#options").each(function () {
+      const quantity = parseInt($(this).find(".fw-normal").text());
+      const price = parseInt($(this).find(".mb-0").last().text().replace("$", ""));
+      const itemTotal = quantity * price;
+      console.log(quantity);
+      console.log(price);
+      console.log(itemTotal);
+      total += itemTotal;
     });
-  });
-}
-initMap();
+
+    $("#total-amount").text("$" + total.toFixed(2));
+  }
+});
