@@ -1,0 +1,28 @@
+#order-container {
+  display: flex;
+  margin-left: 3rem;
+}
+.profile-username {
+  margin-left: 4rem;
+}
+.div-box {
+  background-color: #dad7cd;
+  flex-direction: column;
+  color: black;
+  word-wrap: break-word;
+  width: 22vw;
+  height: 20rem;
+  overflow: scroll;
+  margin: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
+}
+.h3 {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .div-box {
+    width: calc(100% - 20px);
+  }
+}

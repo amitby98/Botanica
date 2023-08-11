@@ -1,6 +1,70 @@
 const currentPage = window.location.pathname.slice(1);
 
 function addNavbar() {
+  const checkoutHtml = `<div id='checkout-card' class="card bg-primary text-white rounded-3" style='display: none'>
+  <div class="card-body">
+    <div class="d-flex justify-content-center align-items-center mb-6">
+      <h5 class="mb-6">Card details</h5>
+    </div>
+
+    <p class="d-flex justify-content-center">
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
+      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+    </p>
+
+    <!-- Card details form -->
+    <form class="mt-4">
+      <div class="form-outline form-white mb-4">
+        <input type="text" id="typeName" class="form-control form-control-lg" siez="17" placeholder="Cardholder's Name" />
+        <label class="form-label" for="typeName">Cardholder's Name</label>
+      </div>
+
+      <div class="form-outline form-white mb-4">
+        <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+        <label class="form-label" for="typeText">Card Number</label>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="form-outline form-white">
+            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+            <label class="form-label" for="typeExp">Expiration</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-outline form-white">
+            <input type="password" id="typeText" class="form-control form-control-lg" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+            <label class="form-label" for="typeText">Cvv</label>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4" />
+    </form>
+
+    <div class="d-flex justify-content-between">
+      <p class="mb-2">Subtotal</p>
+      <p class="mb-2" id='checkout-total'>0$</p>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <p class="mb-2">Shipping</p>
+      <p class="mb-2">$20.00</p>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+      <p class="mb-2">Total(Incl. taxes)</p>
+      <p class="mb-2" id='total-with-shipping'>0$</p>
+    </div>
+
+    <button id='confirm-order' type="button" class="btn btn-info btn-block btn-lg">
+      <div class="d-flex justify-content-between">
+        <span>Checkout <i class="fa-regular fa-credit-card"></i></span>
+      </div>
+    </button>
+  </div>
+</div>`;
   const navbarHtml = `
   <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
@@ -28,7 +92,7 @@ function addNavbar() {
             : ""
         }
         
-        <li class="nav-item mx-2">
+        <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="fa-solid fa-cart-shopping"></i>
           </a>
@@ -49,31 +113,14 @@ function addNavbar() {
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="d-flex justify-content-between">
-          <div class="d-flex flex-row align-items-center">
-            <div>
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px" />
-            </div>
-            <div class="ms-3">
-              <h5>Iphone 11 pro</h5>
-              <p class="small mb-0">256GB, Navy Blue</p>
-            </div>
-          </div>
-          <div class="d-flex flex-row align-items-center" id="options">
-            <div id="amount-div">
-              <button class="btn btn-secondary btn-sm increase-quantity"><i class="fa-solid fa-circle-plus"></i></button>
-              <h5 class="fw-normal">1</h5>
-              <button class="btn btn-secondary btn-sm decrease-quantity"><i class="fa-solid fa-circle-minus"></i></button>
-            </div>
-            <h5 class="mb-0">$900</h5>
-            <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash-alt"></i></button>
-          </div>
+        <div id="cart-items" class="justify-content-between">
         </div>
         <div class="d-flex justify-content-between">
-        <p class="mb-2">Subtotal</p>
-        <p class="mb-2" id="total-amount">$4798.00</p>
+          <p class="mb-2 cartTotal">Subtotal</p>
+          <p class="mb-2 cartTotal" id="total-amount">$</p>
         </div>
-        <a id="checkout-cart" href="/checkout.html" role="button">Proceed to checkout</a>
+        <button id="checkout-cart" href="#" role="button">Proceed to checkout</button>
+        ${checkoutHtml}
       </div>
     </div>
 <div id="loginModal" class="modal fade" role="dialog">
@@ -127,6 +174,120 @@ function addNavbar() {
 `;
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);
+  $("#cart-nav-link").click(renderCartItems);
+
+  $("#checkout-cart").click(() => {
+    $("#checkout-card").attr("style", "display: initial");
+    $("#checkout-cart").attr("style", "display: none");
+    $(".cartTotal").attr("style", "display: none");
+  });
+
+  $("#confirm-order").click(async () => {
+    const { _id } = JSON.parse(localStorage.getItem("user") || "{}");
+    if (!_id) {
+      return alert("Please login to complete you purchase");
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (cart.length === 0) {
+      return alert("Please add items to your cart");
+    }
+    let total = 0;
+
+    for (const cartItem of cart) {
+      total += cartItem.price * cartItem.quantity;
+    }
+
+    $.ajax({
+      url: "api/orders",
+      method: "POST",
+      data: JSON.stringify({ total, cart, userId: _id }),
+      contentType: "application/json",
+      dataType: "json",
+      success: data => {
+        alert("Order placed succesfully");
+        localStorage.removeItem("cart");
+        window.location.href = "/profile.html";
+      },
+    });
+  });
+}
+
+function renderCartItems() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  console.log(cart);
+  $("#cart-items").html("");
+  let total = 0;
+
+  for (const cartItem of cart) {
+    total += cartItem.price * cartItem.quantity;
+    const itemHtml = `<div id="${cartItem._id}" class="item d-flex justify-content-between">
+          <div class="d-flex flex-row align-items-center">
+                <div>
+                  <img src="${cartItem.imageUrl}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px" />
+                </div>
+                <div class="ms-3">
+                  <h5>${cartItem.name}</h5>
+                  <p class="small mb-0">${cartItem.category}</p>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center" id="options">
+                <div id="amount-div">
+                  <button class="btn btn-secondary btn-sm increase-quantity"><i class="fa-solid fa-circle-plus"></i></button>
+                  <h5 class="fw-normal">${cartItem.quantity}</h5>
+                  <button class="btn btn-secondary btn-sm decrease-quantity"><i class="fa-solid fa-circle-minus"></i></button>
+                </div>
+                <h5 class="mb-0">$${cartItem.price}</h5>
+                <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>`;
+
+    $("#cart-items").append(itemHtml);
+  }
+  $("#total-amount").html(total + "$");
+  $("#checkout-total").html(total + "$");
+  $("#total-with-shipping").html(total + 20 + "$");
+
+  $("body")
+    .find("#cart-items .increase-quantity")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const index = cart.findIndex(p => p._id === productId);
+        cart[index].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems();
+      });
+    });
+
+  $("body")
+    .find("#cart-items .decrease-quantity")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const index = cart.findIndex(p => p._id === productId);
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems();
+      });
+    });
+
+  $("body")
+    .find("#cart-items .remove-item")
+    .each((index, element) => {
+      $(element).on("click", () => {
+        const box = element.closest(".item");
+        const productId = box.id;
+        const updatedCart = cart.filter(p => p._id !== productId);
+        console.log({ updatedCart });
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        renderCartItems();
+      });
+    });
 }
 
 function addFooter() {
@@ -260,89 +421,8 @@ if (userString) {
   $("#profile-link").attr("style", "display: block;");
 }
 
-//Carousel Functionality
-$(document).ready(function () {
-  $("#intro-type .intro-types").on("click", function () {
-    $(this).addClass("active");
-    $(this).siblings().removeClass("active");
-  });
-});
-
-// $(document).ready(function () {
-//   console.log("Document ready");
-//   // Show the initially active carousel
-//   // $("#carousel-indoor").addClass("active");
-
-//   // Handle the click event for each category button
-//   $(".intro-types").click(function (e) {
-//     e.preventDefault();
-
-//     // Get the target carousel ID from the href attribute of the clicked button
-//     var targetCarousel = $(this).attr("href");
-
-//     // Remove "active" class from all carousels
-//     $(`${targetCarousel}.carousel-item`).removeClass("active");
-
-//     // Add "active" class to the target carousel
-//     $(`${targetCarousel}.carousel-item`).addClass("active");
-//     console.log(targetCarousel);
-//     console.log(`${targetCarousel} .carousel-item`);
-//   });
-// });
-
-//////// Map Function
-let map;
-let infowindow;
-
-async function initMap() {
-  const position = { lat: 31.24, lng: 35.04 };
-
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-  map = new Map(document.getElementById("map"), {
-    zoom: 6,
-    center: position,
-    mapId: "my-project-botanica-395208",
-  });
-
-  const cities = [
-    { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
-    { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
-    { name: "Haifa", lat: 32.794, lng: 34.9896 },
-  ];
-
-  infowindow = new google.maps.InfoWindow();
-
-  cities.forEach(city => {
-    const marker = new AdvancedMarkerElement({
-      map: map,
-      position: { lat: city.lat, lng: city.lng },
-      title: `Botanica shop, ${city.name}`,
-    });
-  });
-}
-initMap();
-
 //////// Cart Function
 $(document).ready(function () {
-  $(".increase-quantity").on("click", function () {
-    const quantityElement = $(this).siblings("h5");
-    let quantity = parseInt(quantityElement.text());
-    quantity++;
-    quantityElement.text(quantity);
-    updateTotal();
-  });
-
-  $(".decrease-quantity").on("click", function () {
-    const quantityElement = $(this).siblings("h5");
-    let quantity = parseInt(quantityElement.text());
-    if (quantity > 1) {
-      quantity--;
-      quantityElement.text(quantity);
-      updateTotal();
-    }
-  });
-
   $(".remove-item").on("click", function () {
     const listItem = $(this).closest(".d-flex.justify-content-between");
     listItem.remove();

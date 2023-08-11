@@ -429,7 +429,8 @@ p {
   background-color: #34a060;
 }
 
-#carousel-intro #carouselControls .carousel-inner {
+#carousel-intro #carouselControls .carousel-inner,
+#carousel-intro #carouselControls2 .carousel-inner {
   width: 90vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -440,23 +441,27 @@ p {
   padding: 1em;
 }
 
-#carousel-intro #carouselControls .carousel-inner .card {
+#carousel-intro #carouselControls .carousel-inner .card,
+#carousel-intro #carouselControls2 .carousel-inner .card {
   margin: 0 0.5em;
   background-color: transparent;
   border: none;
   border-radius: 0;
 }
 
-#carousel-intro #carouselControls .carousel-inner .card img {
+#carousel-intro #carouselControls .carousel-inner .card img,
+#carousel-intro #carouselControls2 .carousel-inner .card img {
   max-width: 100%;
   max-height: 100%;
 }
 
-#carousel-intro #carouselControls .carousel-inner .card .card-body {
+#carousel-intro #carouselControls .carousel-inner .card .carousle-card,
+#carousel-intro #carouselControls2 .carousel-inner .card .carousle-card {
   margin-top: 1rem;
 }
 
-#carousel-intro #carouselControls .carousel-inner .card .card-body .card-title {
+#carousel-intro #carouselControls .carousel-inner .card .carousle-card .card-title,
+#carousel-intro #carouselControls2 .carousel-inner .card .carousle-card .card-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -466,14 +471,17 @@ p {
   font-weight: 300;
 }
 
-#carousel-intro #carouselControls .carousel-inner .card .card-body .card-text {
+#carousel-intro #carouselControls .carousel-inner .card .carousle-card .card-text,
+#carousel-intro #carouselControls2 .carousel-inner .card .carousle-card .card-text {
   text-align: center;
   font-weight: 800;
   font-size: 1rem;
 }
 
 #carousel-intro #carouselControls .carousel-inner .carousel-control-prev,
-#carousel-intro #carouselControls .carousel-inner .carousel-control-next {
+#carousel-intro #carouselControls .carousel-inner .carousel-control-next,
+#carousel-intro #carouselControls2 .carousel-inner .carousel-control-prev,
+#carousel-intro #carouselControls2 .carousel-inner .carousel-control-next {
   background-color: #34a060;
   width: 3.5rem;
   height: 3.5rem;
@@ -483,7 +491,8 @@ p {
 }
 
 @media (min-width: 768px) {
-  #carousel-intro #carouselControls .carousel-inner .card img {
+  #carousel-intro #carouselControls .carousel-inner .card img,
+  #carousel-intro #carouselControls2 .carousel-inner .card img {
     height: 23em;
   }
 }
@@ -534,5 +543,51 @@ button.btn.btn-secondary.btn-sm.decrease-quantity {
   border-radius: 0.4rem;
   color: black;
   font-weight: 600;
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+#checkout {
+  background: #f2f2f1;
+  border: none;
+}
+
+.card-body {
+  background-color: #34a060;
+}
+
+.card.bg-primary.text-white {
+  border-color: #f2f2f1;
+}
+
+#checkout-header {
+  font-size: 18px;
+}
+
+.options {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 12rem;
+}
+
+.row {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.fa-shop {
+  -webkit-transition: -webkit-transform 0.1s ease;
+  transition: -webkit-transform 0.1s ease;
+  transition: transform 0.1s ease;
+  transition: transform 0.1s ease, -webkit-transform 0.1s ease;
+}
+
+.fa-shop:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 /*# sourceMappingURL=style.css.map */

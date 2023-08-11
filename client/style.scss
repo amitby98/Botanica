@@ -372,7 +372,8 @@ p {
     }
   }
 
-  #carouselControls {
+  #carouselControls,
+  #carouselControls2 {
     .carousel-inner {
       width: 90vw;
       display: flex;
@@ -418,7 +419,7 @@ p {
           max-height: 100%;
         }
 
-        .card-body {
+        .carousle-card {
           margin-top: 1rem;
           .card-title {
             display: flex;
@@ -576,4 +577,40 @@ button.btn.btn-secondary.btn-sm.decrease-quantity {
     color: black;
     font-weight: 600;
   }
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+///////////////// Cart Checkout
+#checkout {
+  background: #f2f2f1;
+  border: none;
+}
+.card-body {
+  background-color: #34a060;
+}
+.card.bg-primary.text-white {
+  border-color: #f2f2f1;
+}
+#checkout-header {
+  font-size: 18px;
+}
+.options {
+  justify-content: space-around;
+  width: 12rem;
+}
+.row {
+  margin-right: auto;
+  margin-left: auto;
+}
+.fa-shop {
+  transition: transform 0.1s ease;
+}
+
+.fa-shop:hover {
+  transform: scale(1.2);
 }

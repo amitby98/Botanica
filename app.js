@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { productRouter } = require("./router/products-router");
 const { userRouter } = require("./router/users-router");
+const { orderRouter } = require("./router/orders-router");
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
 
 mongoose
   .connect("mongodb+srv://admin:admin@cluster0.4peadmg.mongodb.net/?retryWrites=true&w=majority")
