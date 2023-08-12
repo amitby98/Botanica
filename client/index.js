@@ -86,7 +86,8 @@ function addNavbar() {
       <ul class="navbar-nav me-right">     
         <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="cartIconTop
+            fa-solid fa-cart-shopping"></i><span class='cart-counter'></span>
           </a>
         </li>
         <li class="nav-item mx-2">
@@ -167,7 +168,6 @@ function addNavbar() {
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);
   $("#cart-nav-link").click(renderCartItems);
-
   $("#checkout-cart").click(() => {
     $("#checkout-card").attr("style", "display: initial");
     $("#checkout-cart").attr("style", "display: none");
@@ -248,6 +248,7 @@ function renderCartItems() {
         const productId = box.id;
         const index = cart.findIndex(p => p._id === productId);
         cart[index].quantity += 1;
+        cartCounterFunc++;
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();
       });
@@ -262,6 +263,7 @@ function renderCartItems() {
         const index = cart.findIndex(p => p._id === productId);
         if (cart[index].quantity > 1) {
           cart[index].quantity -= 1;
+          cartCounterFunc--;
         }
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();

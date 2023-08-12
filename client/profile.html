@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/97d0dbe332.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="index.js" defer></script>
     <script src="scripts/profile.js" defer></script>
     <title>Botanica</title>
@@ -24,11 +25,10 @@
       </head>
       <body>
         <div class="profile-details">
-          <h2 class="profile-username">Hello, <span id="username">Amit</span></h2>
+          <h2 class="profile-username">Welcome Back, <span id="username"></span>!</h2>
+          <h5>Your reservations:</h5>
         </div>
-        <div class="div-container" id="order-container">
-          <div class="div-box"></div>
-        </div>
+        <div class="container" id="order-container"></div>
       </body>
     </html>
   </body>
