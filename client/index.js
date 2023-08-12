@@ -1,4 +1,6 @@
 const currentPage = window.location.pathname.slice(1);
+const userData2 = JSON.parse(localStorage.getItem("user"));
+const userName1 = userData2 ? userData2.username.charAt(0).toUpperCase() + userData2.username.slice(1) : "";
 
 function updateCartQuantity() {
   const cart = getCart();
@@ -117,18 +119,26 @@ function addNavbar() {
         </li>
         <li class="nav-item mx-2">
           <a id="login-overlay" class="nav-link" data-bs-toggle="modal" href="#loginModal" role="button" aria-controls="loginModal"><i class="fa-solid fa-user"></i></a>
-          <a id="profile-link" class="nav-link ${currentPage === "profile.html" ? "selected" : ""}" href="/profile.html">
-            <i class="fa-solid fa-user"></i>
-          </a>
-        </li>
-        ${
-          isLoggedIn
-            ? `<li class="nav-item mx-2">
-                <button class="nav-link" id='logout'>Log out
-                </button>
+          ${
+            isLoggedIn
+              ? ` <div class="dropdown dropstart profile-link">
+            <a class="nav-link ${currentPage === "profile.html" ? "selected" : ""}"  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="#" >Hello, ${userName1}</a></li>
+              <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="/">   
+              <li class="nav-item mx-2">
+                  <a class="dropdown-item" id='logout'>Log out</a>
               </li>`
-            : ""
-        }
+              : ""
+          }
+                 </a></li>
+              </ul>
+          </div>
+        
+        </li>
+
 
       </ul>
     </div>
@@ -240,7 +250,7 @@ function addNavbar() {
 
   $("#logout").click(() => {
     localStorage.removeItem("user");
-    window.location.href("/");
+    window.location.href = "/";
   });
 }
 
@@ -460,7 +470,7 @@ $(".register-form").on("submit", e => {
 const userString = localStorage.getItem("user");
 if (userString) {
   $("#login-overlay").attr("style", "display: none;");
-  $("#profile-link").attr("style", "display: block;");
+  $(".profile-link").attr("style", "display: block;");
 }
 
 //////// Cart Function
