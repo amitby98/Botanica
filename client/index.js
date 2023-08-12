@@ -103,7 +103,12 @@ function addNavbar() {
         </li>
       </ul>
       <ul class="navbar-nav me-right">
-        <li class="nav-item mx-2"><p>Connected users: <span id='userCount'>1</span></p></li>  
+        <li class="nav-item mx-2">
+          <a class='nav-link'>
+            <i class="fa-solid fa-users"></i>
+            <span id='userCount'>1</span>
+          </a>
+        </li>  
         <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="cartIconTop
@@ -119,8 +124,7 @@ function addNavbar() {
         ${
           isLoggedIn
             ? `<li class="nav-item mx-2">
-                <button class="nav-link" id='logout'>
-                  <i class="cartIconTop fa-solid fa-heart"></i>
+                <button class="nav-link" id='logout'>Log out
                 </button>
               </li>`
             : ""
