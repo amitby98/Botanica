@@ -438,6 +438,9 @@ $(".login-form").on("submit", e => {
       localStorage.setItem("user", JSON.stringify(data.user));
       window.location.reload();
     },
+    error: error => {
+      alert(error.responseText);
+    },
   });
 
   loginUserInput.val("");

@@ -34,8 +34,8 @@
             <div class="form-group col-sm-4 col-xs-6">
               <select id="category" data-filter="type" class="filter-make filter form-control">
                 <option value="">Plants type (All)</option>
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
+                <option value="indoor">Indoor<span id="indoorCount"></span></option>
+                <option value="outdoor">Outdoor<span id="outdoorCount"></span></option>
               </select>
             </div>
             <div class="form-group col-sm-4 col-xs-6">
@@ -57,47 +57,6 @@
           </form>
         </div>
       </section>
-      <!-- <div>
-      <input id="search" type="text" placeholder="Search items" />
-      <select name="Plant types" id="type">
-        <option value="indoor">Indoor</option>
-        <option value="outdoor">Outdoor</option>
-      </select>
-      <select name="Size" id="size">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="big">Large</option>
-      </select>
-      <select name="Light" id="terms">
-        <option value="sunny">Sunny</option>
-        <option value="part-shade">Partial Shade</option>
-        <option value="shade">Shade</option>
-      </select>
-      <button>
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </div> -->
-      <!-- <div class="filters">
-        <h2>Filters</h2>
-        <div class="filter-group">
-          <h5>Environment</h5>
-          <label><input type="checkbox" class="environment-filter" value="indoor" />Indoor</label>
-          <label><input type="checkbox" class="environment-filter" value="outdoor" />Outdoor</label>
-        </div>
-        <div class="filter-group">
-          <h5>Size</h5>
-          <label><input type="checkbox" class="size-filter" value="small" />Small</label>
-          <label><input type="checkbox" class="size-filter" value="medium" />Medium</label>
-          <label><input type="checkbox" class="size-filter" value="large" />Large</label>
-        </div>
-
-        <div class="filter-group">
-          <h5>Light</h5>
-          <label><input type="checkbox" class="light-filter" value="low" />Shade</label>
-          <label><input type="checkbox" class="light-filter" value="medium" />Partial Shade</label>
-          <label><input type="checkbox" class="light-filter" value="high" />Sunny</label>
-        </div>
-      </div> -->
       <section class="container" id="products"></section>
     </section>
   </body>
