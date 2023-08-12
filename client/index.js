@@ -1,4 +1,6 @@
 const currentPage = window.location.pathname.slice(1);
+const { postThankYouTweet } = require('./Twitter');
+const axios = require('axios');
 
 function addNavbar() {
   const checkoutHtml = `<div id='checkout-card' class="card bg-primary text-white rounded-3" style='display: none'>
@@ -189,21 +191,30 @@ function addNavbar() {
     for (const cartItem of cart) {
       total += cartItem.price * cartItem.quantity;
     }
-
-    $.ajax({
-      url: "api/orders",
-      method: "POST",
-      data: JSON.stringify({ total, cart, userId: _id }),
-      contentType: "application/json",
-      dataType: "json",
-      success: data => {
-        alert("Order placed succesfully");
-        localStorage.removeItem("cart");
-        window.location.href = "/profile.html";
-      },
-    });
+    try {
+      // Post the thank-you tweet
+      await postThankYouTweet();
+  
+      // Proceed with placing the order
+      $.ajax({
+        url: "api/orders",
+        method: "POST",
+        data: JSON.stringify({ total, cart, userId: _id }),
+        contentType: "application/json",
+        dataType: "json",
+        success: data => {
+          alert("Order placed successfully");
+          localStorage.removeItem("cart");
+          window.location.href = "/profile.html";
+        },
+        error: (error) => {
+          console.error("Error placing order:", error);
+        }
+      });
+    } catch (error) {
+      console.error("Error posting thank-you tweet:", error);
+    }
   });
-}
 
 function renderCartItems() {
   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -438,3 +449,4 @@ $(document).ready(function () {
     $("#total-amount").text("$" + total.toFixed(2));
   }
 });
+}
