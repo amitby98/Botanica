@@ -14,9 +14,9 @@ async function initMap() {
   });
 
   const cities = [
-    { name: "Jerusalem", lat: 31.7683, lng: 35.2137 },
-    { name: "Tel Aviv", lat: 32.0853, lng: 34.7818 },
-    { name: "Haifa", lat: 32.794, lng: 34.9896 },
+    { name: "Jerusalem", lat: 31.784482, lng: 35.212371 },
+    { name: "Tel Aviv", lat: 32.077275, lng: 34.773655 },
+    { name: "Haifa", lat: 32.802092, lng: 34.987301 },
   ];
 
   infowindow = new google.maps.InfoWindow();
