@@ -376,3 +376,22 @@ async function fillDatabase() {
 }
 
 fillDatabase();
+
+async function getPlantCounts() {
+  try {
+    const aggregationResult = await ProductModel.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    console.log(aggregationResult);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getPlantCounts();

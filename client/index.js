@@ -236,7 +236,7 @@ function addNavbar() {
 
   $("#logout").click(() => {
     localStorage.removeItem("user");
-    window.location.href("/");
+    window.location.href = "/";
   });
 }
 
@@ -423,6 +423,9 @@ $(".login-form").on("submit", e => {
       console.log("user found");
       localStorage.setItem("user", JSON.stringify(data.user));
       window.location.reload();
+    },
+    error: error => {
+      alert(error.responseText);
     },
   });
 
