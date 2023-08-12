@@ -165,7 +165,7 @@ body {
 .send:hover {
   background-color: #0056b3;
 }
-}
+
 
 @media (min-width: 768px) and (max-width: 992px) {
   .contact-info-item {

@@ -1,28 +1,39 @@
-//Add new order
-function addOrder(date, content, total) {
-  const container = document.getElementById("order-container");
+const userData1 = JSON.parse(localStorage.getItem("user"));
+const userName = userData1 ? userData1.username : "";
 
-  const divBox = document.createElement("div");
-  divBox.classList.add("div-box");
-
-  const dateDiv = document.createElement("div");
-  dateDiv.classList.add("Date");
-  const dateH3 = document.createElement("h3");
-  dateH3.textContent = date;
-  dateDiv.appendChild(dateH3);
-
-  const contentP = document.createElement("p");
-  contentP.textContent = content;
-
-  const totalH3 = document.createElement("h3");
-  totalH3.textContent = total;
-
-  divBox.appendChild(dateDiv);
-  divBox.appendChild(contentP);
-  divBox.appendChild(totalH3);
-
-  container.appendChild(divBox);
+if (userName) {
+  const capitalizedUserName = userName.charAt(0).toUpperCase() + userName.slice(1);
+  $("#username").html(capitalizedUserName);
+} else {
+  $("#username").html("");
 }
 
-// הוספת ריבוע עם תוכן חדש
-addOrder();
+function addOrder(orders) {
+  $("#order-container").html("");
+  for (const order of orders) {
+    const orderDiv = $("<div>").addClass("div-box");
+    const dateDiv = $("<div>").addClass("date").html(`
+        <h5>Order Number: ${order._id}</h5>
+        <h6 class="card-text"><i class="far fa-clock pe-2"></i>${moment(order.createdAt).format("DD/MM/YYYY HH:mm:ss")}</h6>
+      `);
+    const itemsDiv = $("<div>")
+      .addClass("items-content")
+      .html(order.items.map(item => `<p>${item.name} &nbsp; X${item.quantity} &nbsp; $${item.price}</p>`).join(""));
+    const totalH3 = $("<h5>").text(`Total: $${order.total}`);
+
+    orderDiv.append(dateDiv, itemsDiv, totalH3);
+    $("#order-container").append(orderDiv);
+  }
+}
+
+const userData = JSON.parse(localStorage.getItem("user"));
+const userId = userData ? userData._id : "";
+
+$.ajax({
+  url: "api/orders/" + userId,
+  method: "GET",
+  success: data => {
+    console.log(data);
+    addOrder(data);
+  },
+});
