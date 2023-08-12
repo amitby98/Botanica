@@ -358,8 +358,8 @@ const products = [
   },
 ];
 async function fillDatabase() {
-  await ProductModel.deleteMany({});
-  return;
+  // await ProductModel.deleteMany({});
+  // return;
   const dbItems = await ProductModel.find();
   if (dbItems.length === 0) {
     for (const product of products) {
