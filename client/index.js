@@ -125,12 +125,10 @@ function addNavbar() {
             <a class="nav-link ${currentPage === "profile.html" ? "selected" : ""}"  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-user"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#" >Hello, ${userName1}</a></li>
+              <li><h6 class="dropdown-header">Hello, ${userName1}!</h6></li>
               <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="/">   
-              <li class="nav-item mx-2">
-                  <a class="dropdown-item" id='logout'>Log out</a>
-              </li>`
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" id='logout'>Log out &nbsp;<i class="fa-solid fa-right-from-bracket fa-fade" style="color: #000000;font-size: medium;"></i></a></li>`
               : ""
           }
                  </a></li>
