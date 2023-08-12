@@ -63,17 +63,7 @@ function renderProducts(products) {
   $(document).ready(function () {
     let counts = 0;
     $(".cart-icon").click(function () {
-      counts += 1;
-      $(".cart-counter").animate(
-        {
-          opacity: 1,
-        },
-        300,
-        function () {
-          $(this).text(counts);
-        }
-      );
-      // localStorage.setItem("cart-counter", JSON.stringify(cartCounter));
+      updateCartQuantity();
     });
   });
 }

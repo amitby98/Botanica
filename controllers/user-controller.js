@@ -19,10 +19,17 @@ async function register(req, res) {
     return res.status(400).json({ message: "Missing username, role or password" });
   }
 
-  const user = await UserModel.create({ username, password, role });
-  const userData = user.toObject();
-  delete userData.password;
-  res.json({ user: userData });
+  try {
+    const user = await UserModel.create({ username, password, role });
+    const userData = user.toObject();
+    delete userData.password;
+    res.json({ user: userData });
+  } catch (err) {
+    if (err.message.startsWith("E11000 duplicate key error")) {
+      return res.status(400).send("Username already exists");
+    }
+    return res.status(500).send("Something went wrong");
+  }
 }
 
 module.exports = { login, register };

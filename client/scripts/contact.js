@@ -13,11 +13,8 @@ async function initMap() {
     mapId: "my-project-botanica-395208",
   });
 
-  const cities = [
-    { name: "Jerusalem", lat: 31.784482, lng: 35.212371 },
-    { name: "Tel Aviv", lat: 32.077275, lng: 34.773655 },
-    { name: "Haifa", lat: 32.802092, lng: 34.987301 },
-  ];
+  const response = await fetch("http://localhost:3000/api/addresses");
+  const cities = await response.json();
 
   infowindow = new google.maps.InfoWindow();
 

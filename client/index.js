@@ -1,6 +1,25 @@
 const currentPage = window.location.pathname.slice(1);
 
+function updateCartQuantity() {
+  const cart = getCart();
+  let totalQuantity = 0;
+  for (const cartItem of cart) {
+    totalQuantity += cartItem.quantity;
+  }
+
+  $(".cart-counter").animate(
+    {
+      opacity: 1,
+    },
+    300,
+    function () {
+      $(this).text(totalQuantity);
+    }
+  );
+}
+
 function addNavbar() {
+  const isLoggedIn = localStorage.getItem("user");
   const checkoutHtml = `<div id='checkout-card' class="card bg-primary text-white rounded-3" style='display: none'>
   <div class="card-body">
     <div class="d-flex justify-content-center align-items-center mb-6">
@@ -83,7 +102,8 @@ function addNavbar() {
           <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
       </ul>
-      <ul class="navbar-nav me-right">     
+      <ul class="navbar-nav me-right">
+        <li class="nav-item mx-2"><p>Connected users: <span id='userCount'>1</span></p></li>  
         <li id='cart-nav-link' class="nav-item mx-2">
           <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
             <i class="cartIconTop
@@ -96,6 +116,16 @@ function addNavbar() {
             <i class="fa-solid fa-user"></i>
           </a>
         </li>
+        ${
+          isLoggedIn
+            ? `<li class="nav-item mx-2">
+                <button class="nav-link" id='logout'>
+                  <i class="cartIconTop fa-solid fa-heart"></i>
+                </button>
+              </li>`
+            : ""
+        }
+
       </ul>
     </div>
   </div>
@@ -203,10 +233,15 @@ function addNavbar() {
       },
     });
   });
+
+  $("#logout").click(() => {
+    localStorage.removeItem("user");
+    window.location.href("/");
+  });
 }
 
 function renderCartItems() {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cart = getCart();
   console.log(cart);
   $("#cart-items").html("");
   let total = 0;
@@ -248,9 +283,9 @@ function renderCartItems() {
         const productId = box.id;
         const index = cart.findIndex(p => p._id === productId);
         cart[index].quantity += 1;
-        cartCounterFunc++;
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();
+        updateCartQuantity();
       });
     });
 
@@ -263,10 +298,10 @@ function renderCartItems() {
         const index = cart.findIndex(p => p._id === productId);
         if (cart[index].quantity > 1) {
           cart[index].quantity -= 1;
-          cartCounterFunc--;
         }
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();
+        updateCartQuantity();
       });
     });
 
@@ -280,8 +315,13 @@ function renderCartItems() {
         console.log({ updatedCart });
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         renderCartItems();
+        updateCartQuantity();
       });
     });
+}
+
+function getCart() {
+  return JSON.parse(localStorage.getItem("cart") || "[]");
 }
 
 function addFooter() {
@@ -346,6 +386,7 @@ function addFooter() {
 
 addNavbar();
 addFooter();
+updateCartQuantity();
 
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
@@ -406,6 +447,9 @@ $(".register-form").on("submit", e => {
       localStorage.setItem("user", JSON.stringify(data.user));
       window.location.reload();
     },
+    error: error => {
+      alert(error.responseText);
+    },
   });
 });
 
@@ -437,4 +481,10 @@ $(document).ready(function () {
 
     $("#total-amount").text("$" + total.toFixed(2));
   }
+});
+
+const socket = io("http://localhost:3000");
+
+socket.on("userCount", count => {
+  document.getElementById("userCount").innerText = count;
 });
