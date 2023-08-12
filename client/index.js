@@ -106,7 +106,7 @@ function addNavbar() {
       </ul>
       <ul class="navbar-nav me-right">
         <li class="nav-item mx-2">
-          <a class='nav-link'>
+          <a class='nav-link' style="color: black; background-color: transparent;">
             <i class="fa-solid fa-users"></i>
             <span id='userCount'>1</span>
           </a>
