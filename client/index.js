@@ -1,3 +1,5 @@
+const adminData = JSON.parse(localStorage.getItem("user"));
+const isAdmin = adminData ? adminData.role : "";
 const currentPage = window.location.pathname.slice(1);
 const userData2 = JSON.parse(localStorage.getItem("user"));
 const userName1 = userData2 ? userData2.username.charAt(0).toUpperCase() + userData2.username.slice(1) : "";
@@ -43,8 +45,8 @@ function addNavbar() {
       </div>
 
       <div class="form-outline form-white mb-4">
-        <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-        <label class="form-label" for="typeText">Card Number</label>
+        <input type="text" id="card-type" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+        <label class="form-label" for="card-type">Card Number</label>
       </div>
 
       <div class="row mb-4">
@@ -100,9 +102,14 @@ function addNavbar() {
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link ${currentPage === "products.html" ? "selected" : ""}" href="./products.html">Products</a>
-        </li> <li class="nav-item mx-2">
-          <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
+        ${
+          isAdmin === "buyer"
+            ? `<li class="nav-item mx-2">
+        <a class="nav-link ${currentPage === " contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
+        </li >`
+            : ""
+        }
       </ul>
       <ul class="navbar-nav me-right">
         <li class="nav-item mx-2">
@@ -110,13 +117,18 @@ function addNavbar() {
             <i class="fa-solid fa-users"></i>
             <span id='userCount'>1</span>
           </a>
-        </li>  
-        <li id='cart-nav-link' class="nav-item mx-2">
-          <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
-            <i class="cartIconTop
-            fa-solid fa-cart-shopping"></i><span class='cart-counter'></span>
-          </a>
         </li>
+        ${
+          isAdmin === "buyer"
+            ? ` <li id='cart-nav-link' class="nav-item mx-2">
+        <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
+          <i class="cartIconTop
+          fa-solid fa-cart-shopping"></i><span class='cart-counter'></span>
+        </a>
+      </li>`
+            : ""
+        }
+       
         <li class="nav-item mx-2">
           <a id="login-overlay" class="nav-link" data-bs-toggle="modal" href="#loginModal" role="button" aria-controls="loginModal"><i class="fa-solid fa-user"></i></a>
           ${
@@ -128,16 +140,12 @@ function addNavbar() {
               <li><h6 class="dropdown-header">Hello, ${userName1}!</h6></li>
               <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
               <div class="dropdown-divider"></div>
-              <li><a class="dropdown-item" id='logout'>Log out &nbsp;<i class="fa-solid fa-right-from-bracket fa-fade" style="color: #000000;font-size: medium;"></i></a></li>`
+              <li><a class="dropdown-item" id='logout'><i class="fa-solid fa-right-from-bracket fa-fade" style="color: #000000;font-size: medium;"></i>&nbsp; Log out </a></li>`
               : ""
           }
-                 </a></li>
               </ul>
           </div>
-        
         </li>
-
-
       </ul>
     </div>
   </div>
@@ -145,6 +153,23 @@ function addNavbar() {
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
+        <div class="row justify-content-evenly" id="cart-filter-container">
+            <div class="col-sm-4 col-xs-6">
+              <select id="cart-category">
+                <option value="">Category</option>
+                <option value="indoor">Indoor<span id="indoorCount"></span></option>
+                <option value="outdoor">Outdoor<span id="outdoorCount"></span></option>
+              </select>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+            <select id="cart-quantity">
+                <option value="">Quantity</option>
+                <option value="underQuan">Under 5</option>
+                <option value="betweenQuan">5 to 10</option>
+                <option value="overQuan">Over 10</option>
+              </select>
+            </div>
+        </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -172,7 +197,7 @@ function addNavbar() {
               <select name="role" id="role" required>
                 <option value="" disabled selected>Select an option</option>
                 <option value="buyer">Buyer</option>
-                <option value="seller">Seller</option>
+                <option value="admin">Admin</option>
               </select>
               <button type="submit" class="buttons">Sign Up</button>
             </form>
@@ -205,7 +230,6 @@ function addNavbar() {
     </div>
   </div>
 </div>
-
 `;
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);

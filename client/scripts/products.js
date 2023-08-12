@@ -1,4 +1,11 @@
 let renderedProducts = [];
+const addBtn = `${isAdmin === "buyer" ? "" : `<div class="d-flex justify-content-center my-4"><button id="add-new-product" class="btn btn-primary" style="background-color: #559c73; border:none;">Add Product</button></div>`}`;
+
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("products-header");
+  container.insertAdjacentHTML("afterend", addBtn);
+});
+
 function renderProducts(products) {
   renderedProducts = products;
   $("#products").html("");
@@ -8,9 +15,15 @@ function renderProducts(products) {
     <div class="mb-3">
       <div id="${product._id}" class="product-box">
         <div class="product-inner-box position-relative">
-          <div class="cart-icon icons position-absolute">
+        ${
+          isAdmin === "buyer"
+            ? `<div class="cart-icon icons position-absolute">
             <a class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
-          </div>
+          </div>`
+            : `<div class="trash-icon icons position-absolute">
+            <a class="text-decoration-none text-dark"><i class="fas fa-trash"></i></a>
+          </div>`
+        }
 
           <img src="${product.imageUrl}" alt="Plant1" class="img-fluid img-thumbnail" />
         </div>
@@ -64,6 +77,14 @@ function renderProducts(products) {
     let counts = 0;
     $(".cart-icon").click(function () {
       updateCartQuantity();
+    });
+  });
+
+  ///////////Remove Product Function
+  $(document).ready(function () {
+    $(".trash-icon").on("click", function () {
+      const productList = $(this).closest(".product-box");
+      productList.remove();
     });
   });
 }

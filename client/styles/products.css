@@ -73,6 +73,15 @@
   top: 3%;
   opacity: 1;
 }
+
+.cart-icon {
+  transition: transform 0.1s ease;
+}
+
+.cart-icon:hover {
+  transform: scale(1.2);
+}
+
 /* .cart-btn {
   position: absolute;
   bottom: 20px;

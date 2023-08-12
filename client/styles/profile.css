@@ -59,7 +59,7 @@
   align-items: center;
 }
 
-#filter-form {
+#profile-filter-form {
   display: flex;
   width: 50vw;
   justify-content: center;
@@ -80,12 +80,12 @@
     flex-direction: column;
     align-items: center;
   }
-  #filter-form {
+  #profile-filter-form {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  #filter-form select {
+  #profile-filter-form select {
     width: 20rem;
   }
 }
