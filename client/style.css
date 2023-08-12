@@ -23,6 +23,28 @@ body {
   font-weight: lighter;
 }
 
+.navbar #cart-nav-link {
+  position: relative;
+  display: block;
+  height: auto;
+}
+
+.navbar #cart-nav-link .cart-counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 11px;
+  border-radius: 50%;
+  background: #d60b28;
+  width: 18px;
+  height: 17px;
+  line-height: 16px;
+  display: block;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
 .navbar #profile-link {
   display: none;
 }

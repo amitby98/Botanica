@@ -9,7 +9,7 @@ function renderProducts(products) {
       <div id="${product._id}" class="product-box">
         <div class="product-inner-box position-relative">
           <div class="cart-icon icons position-absolute">
-            <a href="#" class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
+            <a class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
           </div>
 
           <img src="${product.imageUrl}" alt="Plant1" class="img-fluid img-thumbnail" />
@@ -58,6 +58,24 @@ function renderProducts(products) {
         localStorage.setItem("cart", JSON.stringify(cart));
       });
     });
+
+  ///////////Cart Counter Function
+  $(document).ready(function () {
+    let counts = 0;
+    $(".cart-icon").click(function () {
+      counts += 1;
+      $(".cart-counter").animate(
+        {
+          opacity: 1,
+        },
+        300,
+        function () {
+          $(this).text(counts);
+        }
+      );
+      // localStorage.setItem("cart-counter", JSON.stringify(cartCounter));
+    });
+  });
 }
 
 $.ajax({

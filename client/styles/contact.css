@@ -29,6 +29,7 @@ body {
 .contact-info-item {
   background: #dad7cd;
   padding: 30px 0px;
+  height: 13rem;
 }
 .contact-page-form h2 {
   color: black;
@@ -128,9 +129,14 @@ body {
   margin-top: 36px;
 }
 
-@media (max-width:768px){
-  #map{
+@media (max-width: 768px) {
+  #map {
     height: 20rem;
   }
-  
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .contact-info-item {
+    height: 18rem;
+  }
 }
