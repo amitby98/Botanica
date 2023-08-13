@@ -19,3 +19,7 @@ const userSchema = mongoose.Schema({
 const UserModel = mongoose.model("users", userSchema);
 
 module.exports = { UserModel };
+
+UserModel.find().then(users => {
+  console.log("users", users);
+});

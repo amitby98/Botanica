@@ -13,7 +13,8 @@ async function addOrder(req, res) {
 }
 async function getOrdersByUserId(req, res) {
   const { userId } = req.params;
-  const isAdmin = (await UserModel.findOne({ _id: userId })).role === "admin";
+  const role = (await UserModel.findOne({ _id: userId })).role;
+  const isAdmin = role === "admin";
   if (isAdmin) {
     const orders = await OrderModel.find();
     res.json(orders);

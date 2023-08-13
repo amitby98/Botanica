@@ -1,5 +1,5 @@
 const adminData = JSON.parse(localStorage.getItem("user"));
-const isAdmin = adminData ? adminData.role : "";
+const isAdmin = adminData?.role === "admin";
 const currentPage = window.location.pathname.slice(1);
 const userData2 = JSON.parse(localStorage.getItem("user"));
 const userName1 = userData2 ? userData2.username.charAt(0).toUpperCase() + userData2.username.slice(1) : "";
@@ -104,7 +104,7 @@ function addNavbar() {
           <a class="nav-link ${currentPage === "products.html" ? "selected" : ""}" href="./products.html">Products</a>
         </li>
         ${
-          isAdmin === "buyer"
+          !isAdmin
             ? `<li class="nav-item mx-2">
         <a class="nav-link ${currentPage === " contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li >`
@@ -119,7 +119,7 @@ function addNavbar() {
           </a>
         </li>
         ${
-          isAdmin === "buyer"
+          !isAdmin
             ? ` <li id='cart-nav-link' class="nav-item mx-2">
         <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
           <i class="cartIconTop

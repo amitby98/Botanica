@@ -43,4 +43,53 @@ async function getProductsByParameters(req, res) {
   res.json({ products });
 }
 
-module.exports = { getAllProducts, getProductsByParameters };
+async function addProduct(req, res) {
+  const { nameValue, priceValue, category, size, light, imageUrl } = req.body;
+  const newProduct = new ProductModel({
+    name: nameValue,
+    price: priceValue,
+    category,
+    size,
+    light,
+    imageUrl,
+  });
+  try {
+    await newProduct.save();
+    res.json({ message: "Product Added" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error" });
+  }
+}
+
+async function deleteProduct(req, res) {
+  const { id } = req.params;
+  try {
+    await ProductModel.findByIdAndDelete(id);
+    res.json({ message: "Product Deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error" });
+  }
+}
+
+async function updateProduct(req, res) {
+  const { id } = req.params;
+  console.log("id", id);
+  const { name } = req.body;
+  console.log("name", name);
+  try {
+    await ProductModel.findByIdAndUpdate(id, { name });
+    res.json({ message: "Product Updated" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error" });
+  }
+}
+module.exports = {
+  getAllProducts,
+  getProductsByParameters,
+  addProduct,
+  deleteProduct,
+  updateProduct,
+};
