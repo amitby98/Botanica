@@ -1,5 +1,4 @@
 let renderedProducts = [];
-
 function renderProducts(products) {
   renderedProducts = products;
   $("#products").html("");
@@ -9,18 +8,9 @@ function renderProducts(products) {
     <div class="mb-3">
       <div id="${product._id}" class="product-box">
         <div class="product-inner-box position-relative">
-        ${
-          isAdmin
-            ? `<div class="trash-icon icons position-absolute">
-            <a class="text-decoration-none text-dark"><i class="fas fa-trash"></i></a>
+          <div class="cart-icon icons position-absolute">
+            <a class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
           </div>
-          <div class="pen-icon icons position-absolute" style="right: 60px">
-          <a class="text-decoration-none text-dark"><i class="fas fa-pen"></i></a>
-        </div>`
-            : `<div class="cart-icon icons position-absolute">
-          <a class="text-decoration-none text-dark"><i class="fas fa-shopping-cart"></i></a>
-        </div>`
-        }
 
           <img src="${product.imageUrl}" alt="Plant1" class="img-fluid img-thumbnail" />
         </div>
@@ -69,58 +59,21 @@ function renderProducts(products) {
       });
     });
 
-  $("body")
-    .find(".trash-icon")
-    .each((index, element) => {
-      $(element).on("click", () => {
-        const box = element.closest(".product-box");
-        const productId = box.id;
-        console.log(productId);
-        $.ajax({
-          url: `api/products/${productId}`,
-          method: "DELETE",
-          success: data => {
-            alert("Product Deleted");
-            window.location.reload();
-          },
-          error: error => {
-            alert("Error");
-          },
-        });
-      });
-    });
-
-  $("body")
-    .find(".pen-icon")
-    .each((index, element) => {
-      $(element).on("click", () => {
-        const box = element.closest(".product-box");
-        const productId = box.id;
-        const name = prompt("Enter new name");
-        console.log("name", name);
-        $.ajax({
-          url: `api/products/${productId}`,
-          method: "PUT",
-          contentType: "application/json",
-          dataType: "json",
-          data: JSON.stringify({ name }),
-          success: data => {
-            console.log("data", data);
-            alert("Product updated");
-            window.location.reload();
-          },
-          error: error => {
-            alert("Error");
-          },
-        });
-      });
-    });
-
   ///////////Cart Counter Function
   $(document).ready(function () {
     let counts = 0;
     $(".cart-icon").click(function () {
-      updateCartQuantity();
+      counts += 1;
+      $(".cart-counter").animate(
+        {
+          opacity: 1,
+        },
+        300,
+        function () {
+          $(this).text(counts);
+        }
+      );
+      // localStorage.setItem("cart-counter", JSON.stringify(cartCounter));
     });
   });
 }
@@ -131,10 +84,6 @@ $.ajax({
   success: data => {
     console.log(data);
     renderProducts(data.products);
-    const outdoorCount = data.categoryCount.find(c => c._id === "Outdoor");
-    const indoorCount = data.categoryCount.find(c => c._id === "Indoor");
-    $("#indoorCount").text(`Indoor [${indoorCount.count}]`);
-    $("#outdoorCount").text(`Outdoor [${outdoorCount.count}]`);
   },
 });
 
@@ -156,12 +105,3 @@ $("#search-form").on("submit", function (e) {
     },
   });
 });
-
-{
-  const addBtn = `${isAdmin ? `<div class="d-flex justify-content-center my-4"><button id="add-new-product" class="btn btn-primary" style="background-color: #559c73; border:none;">Add Product</button></div>` : ""}`;
-  const container = document.getElementById("products-header");
-  container.insertAdjacentHTML("afterend", addBtn);
-  document.getElementById("add-new-product").addEventListener("click", () => {
-    window.location.href = "/add-product.html";
-  });
-}

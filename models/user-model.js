@@ -4,7 +4,6 @@ const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,
@@ -19,7 +18,3 @@ const userSchema = mongoose.Schema({
 const UserModel = mongoose.model("users", userSchema);
 
 module.exports = { UserModel };
-
-UserModel.find().then(users => {
-  console.log("users", users);
-});

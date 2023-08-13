@@ -1,29 +1,6 @@
-const adminData = JSON.parse(localStorage.getItem("user"));
-const isAdmin = adminData?.role === "admin";
 const currentPage = window.location.pathname.slice(1);
-const userData2 = JSON.parse(localStorage.getItem("user"));
-const userName1 = userData2 ? userData2.username.charAt(0).toUpperCase() + userData2.username.slice(1) : "";
-
-function updateCartQuantity() {
-  const cart = getCart();
-  let totalQuantity = 0;
-  for (const cartItem of cart) {
-    totalQuantity += cartItem.quantity;
-  }
-
-  $(".cart-counter").animate(
-    {
-      opacity: 1,
-    },
-    300,
-    function () {
-      $(this).text(totalQuantity);
-    }
-  );
-}
 
 function addNavbar() {
-  const isLoggedIn = localStorage.getItem("user");
   const checkoutHtml = `<div id='checkout-card' class="card bg-primary text-white rounded-3" style='display: none'>
   <div class="card-body">
     <div class="d-flex justify-content-center align-items-center mb-6">
@@ -45,8 +22,8 @@ function addNavbar() {
       </div>
 
       <div class="form-outline form-white mb-4">
-        <input type="text" id="card-type" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-        <label class="form-label" for="card-type">Card Number</label>
+        <input type="text" id="typeText" class="form-control form-control-lg" siez="17" placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+        <label class="form-label" for="typeText">Card Number</label>
       </div>
 
       <div class="row mb-4">
@@ -102,49 +79,22 @@ function addNavbar() {
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link ${currentPage === "products.html" ? "selected" : ""}" href="./products.html">Products</a>
+        </li> <li class="nav-item mx-2">
+          <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li>
-        ${
-          !isAdmin
-            ? `<li class="nav-item mx-2">
-        <a class="nav-link ${currentPage === " contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
-        </li >`
-            : ""
-        }
       </ul>
-      <ul class="navbar-nav me-right">
-        <li class="nav-item mx-2">
-          <a class='nav-link' style="color: black; background-color: transparent;">
-            <i class="fa-solid fa-users"></i>
-            <span id='userCount'>1</span>
+      <ul class="navbar-nav me-right">     
+        <li id='cart-nav-link' class="nav-item mx-2">
+          <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
+            <i class="cartIconTop
+            fa-solid fa-cart-shopping"></i><span class='cart-counter'></span>
           </a>
         </li>
-        ${
-          !isAdmin
-            ? ` <li id='cart-nav-link' class="nav-item mx-2">
-        <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvas">
-          <i class="cartIconTop
-          fa-solid fa-cart-shopping"></i><span class='cart-counter'></span>
-        </a>
-      </li>`
-            : ""
-        }
-       
         <li class="nav-item mx-2">
           <a id="login-overlay" class="nav-link" data-bs-toggle="modal" href="#loginModal" role="button" aria-controls="loginModal"><i class="fa-solid fa-user"></i></a>
-          ${
-            isLoggedIn
-              ? ` <div class="dropdown dropstart profile-link">
-            <a class="nav-link ${currentPage === "profile.html" ? "selected" : ""}"  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-user"></i></a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><h6 class="dropdown-header">Hello, ${userName1}!</h6></li>
-              <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
-              <div class="dropdown-divider"></div>
-              <li><a class="dropdown-item" id='logout'><i class="fa-solid fa-right-from-bracket fa-fade" style="color: #000000;font-size: medium;"></i>&nbsp; Log out </a></li>`
-              : ""
-          }
-              </ul>
-          </div>
+          <a id="profile-link" class="nav-link ${currentPage === "profile.html" ? "selected" : ""}" href="/profile.html">
+            <i class="fa-solid fa-user"></i>
+          </a>
         </li>
       </ul>
     </div>
@@ -153,23 +103,6 @@ function addNavbar() {
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasLabel">Shopping Cart</h5>
-        <div class="row justify-content-evenly" id="cart-filter-container">
-            <div class="col-sm-4 col-xs-6">
-              <select id="cart-category">
-                <option value="">Category</option>
-                <option value="indoor">Indoor<span id="indoorCount"></span></option>
-                <option value="outdoor">Outdoor<span id="outdoorCount"></span></option>
-              </select>
-            </div>
-            <div class="col-sm-4 col-xs-6">
-            <select id="cart-quantity">
-                <option value="">Quantity</option>
-                <option value="underQuan">Under 5</option>
-                <option value="betweenQuan">5 to 10</option>
-                <option value="overQuan">Over 10</option>
-              </select>
-            </div>
-        </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -197,7 +130,7 @@ function addNavbar() {
               <select name="role" id="role" required>
                 <option value="" disabled selected>Select an option</option>
                 <option value="buyer">Buyer</option>
-                <option value="admin">Admin</option>
+                <option value="seller">Seller</option>
               </select>
               <button type="submit" class="buttons">Sign Up</button>
             </form>
@@ -230,6 +163,7 @@ function addNavbar() {
     </div>
   </div>
 </div>
+
 `;
 
   document.body.insertAdjacentHTML("afterbegin", navbarHtml);
@@ -269,15 +203,11 @@ function addNavbar() {
       },
     });
   });
-
-  $("#logout").click(() => {
-    localStorage.removeItem("user");
-    window.location.href = "/";
-  });
 }
 
 function renderCartItems() {
-  const cart = getCart();
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  console.log(cart);
   $("#cart-items").html("");
   let total = 0;
 
@@ -318,9 +248,9 @@ function renderCartItems() {
         const productId = box.id;
         const index = cart.findIndex(p => p._id === productId);
         cart[index].quantity += 1;
+        cartCounterFunc++;
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();
-        updateCartQuantity();
       });
     });
 
@@ -333,10 +263,10 @@ function renderCartItems() {
         const index = cart.findIndex(p => p._id === productId);
         if (cart[index].quantity > 1) {
           cart[index].quantity -= 1;
+          cartCounterFunc--;
         }
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCartItems();
-        updateCartQuantity();
       });
     });
 
@@ -350,40 +280,8 @@ function renderCartItems() {
         console.log({ updatedCart });
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         renderCartItems();
-        updateCartQuantity();
       });
     });
-}
-
-function getCart() {
-  const fullCart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-  const quantityFilter = $("#cart-quantity").val();
-  const categoryFilter = $("#cart-category").val();
-
-  const filteredCart = fullCart.filter(cartItem => {
-    let isShown = true;
-    if (quantityFilter) {
-      if (quantityFilter === "underQuan" && cartItem.quantity > 5) {
-        isShown = false;
-      } else if (quantityFilter === "betweenQuan" && (cartItem.quantity <= 5 || cartItem.quantity > 10)) {
-        isShown = false;
-      } else if (quantityFilter === "overQuan" && cartItem.quantity < 10) {
-        isShown = false;
-      }
-    }
-
-    console.log(categoryFilter);
-    if (categoryFilter) {
-      if (categoryFilter === "indoor" && cartItem.category.toLowerCase() === "outdoor") {
-        isShown = false;
-      } else if (categoryFilter === "outdoor" && cartItem.category.toLowerCase() === "indoor") {
-        isShown = false;
-      }
-    }
-    return isShown;
-  });
-  return filteredCart;
 }
 
 function addFooter() {
@@ -448,15 +346,10 @@ function addFooter() {
 
 addNavbar();
 addFooter();
-updateCartQuantity();
 
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
-const cartCategory = document.getElementById("cart-category");
-const cartQuantity = document.getElementById("cart-quantity");
-
-[cartCategory, cartQuantity].forEach(el => el.addEventListener("change", renderCartItems));
 
 signUpButton.addEventListener("click", () => {
   container.classList.add("right-panel-active");
@@ -490,9 +383,6 @@ $(".login-form").on("submit", e => {
       localStorage.setItem("user", JSON.stringify(data.user));
       window.location.reload();
     },
-    error: error => {
-      alert(error.responseText);
-    },
   });
 
   loginUserInput.val("");
@@ -516,16 +406,13 @@ $(".register-form").on("submit", e => {
       localStorage.setItem("user", JSON.stringify(data.user));
       window.location.reload();
     },
-    error: error => {
-      alert(error.responseText);
-    },
   });
 });
 
 const userString = localStorage.getItem("user");
 if (userString) {
   $("#login-overlay").attr("style", "display: none;");
-  $(".profile-link").attr("style", "display: block;");
+  $("#profile-link").attr("style", "display: block;");
 }
 
 //////// Cart Function
@@ -542,15 +429,12 @@ $(document).ready(function () {
       const quantity = parseInt($(this).find(".fw-normal").text());
       const price = parseInt($(this).find(".mb-0").last().text().replace("$", ""));
       const itemTotal = quantity * price;
+      console.log(quantity);
+      console.log(price);
+      console.log(itemTotal);
       total += itemTotal;
     });
 
     $("#total-amount").text("$" + total.toFixed(2));
   }
-});
-
-const socket = io("http://localhost:3000");
-
-socket.on("userCount", count => {
-  document.getElementById("userCount").innerText = count;
 });

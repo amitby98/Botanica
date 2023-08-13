@@ -51,41 +51,8 @@
   margin: 0;
   text-align: right;
 }
-
-/* //////////////// Search & Filter */
-#filter-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#profile-filter-form {
-  display: flex;
-  width: 50vw;
-  justify-content: center;
-}
-
-.form-group {
-  margin: 0 0.5rem 1rem 0.5rem;
-}
-
-/* //////////////// Responsive */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .div-box {
     flex-basis: calc(50% - 2rem);
-  }
-
-  #filter-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #profile-filter-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #profile-filter-form select {
-    width: 20rem;
   }
 }
