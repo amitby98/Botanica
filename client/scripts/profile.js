@@ -107,6 +107,7 @@ function renderGraph(orders) {
   if (!isAdmin) {
     return;
   }
+  document.getElementById("scatter_area").innerHTML = "";
   {
     // Create data
     var data = orders.map(order => {
