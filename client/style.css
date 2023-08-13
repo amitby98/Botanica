@@ -45,6 +45,14 @@ body {
   font-weight: bold;
 }
 
+@media (max-width: 568px) {
+  .navbar #cart-nav-link .cart-counter {
+    position: absolute;
+    top: 0;
+    right: 85%;
+  }
+}
+
 .navbar #profile-link {
   display: none;
 }
@@ -84,7 +92,6 @@ footer {
 
 h1 {
   font-weight: bold;
-  margin: 0;
 }
 
 p {
@@ -636,17 +643,5 @@ button.btn.btn-secondary.btn-sm.decrease-quantity {
 .row {
   margin-right: auto;
   margin-left: auto;
-}
-
-.fa-shop {
-  -webkit-transition: -webkit-transform 0.1s ease;
-  transition: -webkit-transform 0.1s ease;
-  transition: transform 0.1s ease;
-  transition: transform 0.1s ease, -webkit-transform 0.1s ease;
-}
-
-.fa-shop:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
 }
 /*# sourceMappingURL=style.css.map */

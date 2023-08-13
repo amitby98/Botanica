@@ -1,0 +1,15 @@
+#products-header {
+  font-size: 4rem;
+  color: black;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#add-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}

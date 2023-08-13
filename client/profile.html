@@ -33,10 +33,41 @@
       <body>
         <div class="profile-details">
           <h2 class="profile-username">Welcome Back, <span id="username"></span>!</h2>
+        </div>
+        <div style="text-align: center">
           <h5>Your reservations:</h5>
         </div>
+        <div class="row" id="filter-profile">
+          <form id="profile-filter-form">
+            <div class="form-group col-sm-4 col-xs-6">
+              <select id="total" class="filter-make filter form-control">
+                <option value="">Total Price (All)</option>
+                <option value="underTotal">Under $100</option>
+                <option value="overTotal">Over $100</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4 col-xs-6">
+              <select id="createdAt" class="filter-model filter form-control">
+                <option value="">Date From (All)</option>
+                <option value="week">Last Week</option>
+                <option value="month">Last Month</option>
+                <option value="year">Last Year</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4 col-xs-6">
+              <select id="quantity" class="filter-type filter form-control">
+                <option value="">Quantity (All)</option>
+                <option value="underQuan">Under 5</option>
+                <option value="betweenQuan">5 to 10</option>
+                <option value="overQuan">Over 10</option>
+              </select>
+            </div>
+            <div id="client-input-container" style="display: none">
+              <input id="client-input" class="form-control" type="text" placeholder="user id" style="width: 230px" />
+            </div>
+          </form>
+        </div>
         <div class="container" id="order-container"></div>
-        <<<<<<< HEAD =======
         <div class="d-flex">
           <div style="margin: 50px auto; width: 300px">
             <div id="scatter_area"></div>
@@ -46,7 +77,6 @@
           </div>
         </div>
         <div id="weather-info" class="d-flex flex-column align-items-center"></div>
-        >>>>>>> dev/amit
       </body>
     </html>
   </body>
