@@ -106,7 +106,7 @@ function addNavbar() {
         ${
           !isAdmin
             ? `<li class="nav-item mx-2">
-        <a class="nav-link ${currentPage === " contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
+        <a class="nav-link ${currentPage === "contact.html" ? "selected" : ""}" href="./contact.html">Contact</a>
         </li >`
             : ""
         }
