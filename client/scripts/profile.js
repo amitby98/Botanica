@@ -108,6 +108,8 @@ function renderGraph(orders) {
     return;
   }
   document.getElementById("scatter_area").innerHTML = "";
+  document.getElementById("average_scatter_area").innerHTML = "";
+
   // document.getElementById("scatter_area2").innerHTML = "";
   {
     // Create data
@@ -174,6 +176,55 @@ function renderGraph(orders) {
 
     svG.append("text").attr("class", "y label").attr("text-anchor", "end").attr("y", 6).attr("dy", ".75em").attr("transform", "rotate(-90)").text("total order (dollars)");
   }
+
+  // Calculate averages
+  var averageData = orders.map(order => {
+    const orderQuantity = order.items.reduce((sum, item) => sum + item.quantity, 0);
+    return {
+      x: orderQuantity,
+      y: order.total / order.items.length, // Calculate average instead of total
+    };
+  });
+
+  let svG1 = d3
+    .select("#average_scatter_area")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var x = d3.scaleLinear().domain([0, averageData.length]).range([0, width]);
+  svG1
+    .append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  var y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+  svG1.append("g").call(d3.axisLeft(y));
+
+  svG1
+    .selectAll("whatever")
+    .data(averageData)
+    .enter()
+    .append("circle")
+    .attr("cx", function (d) {
+      return x(d.x);
+    })
+    .attr("cy", function (d) {
+      return y(d.y);
+    })
+    .attr("r", 7);
+
+  svG1
+    .append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height - 15)
+    .text("number of items (N)");
+
+  svG1.append("text").attr("class", "y label").attr("text-anchor", "end").attr("y", 6).attr("dy", ".75em").attr("transform", "rotate(-90)").text("average order per item (dollars)");
 }
 // function renderGraphs(orders) {
 //   if (!isAdmin) {
