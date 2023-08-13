@@ -278,7 +278,6 @@ function addNavbar() {
 
 function renderCartItems() {
   const cart = getCart();
-  console.log(cart);
   $("#cart-items").html("");
   let total = 0;
 
@@ -357,7 +356,34 @@ function renderCartItems() {
 }
 
 function getCart() {
-  return JSON.parse(localStorage.getItem("cart") || "[]");
+  const fullCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  const quantityFilter = $("#cart-quantity").val();
+  const categoryFilter = $("#cart-category").val();
+
+  const filteredCart = fullCart.filter(cartItem => {
+    let isShown = true;
+    if (quantityFilter) {
+      if (quantityFilter === "underQuan" && cartItem.quantity > 5) {
+        isShown = false;
+      } else if (quantityFilter === "betweenQuan" && (cartItem.quantity <= 5 || cartItem.quantity > 10)) {
+        isShown = false;
+      } else if (quantityFilter === "overQuan" && cartItem.quantity < 10) {
+        isShown = false;
+      }
+    }
+
+    console.log(categoryFilter);
+    if (categoryFilter) {
+      if (categoryFilter === "indoor" && cartItem.category.toLowerCase() === "outdoor") {
+        isShown = false;
+      } else if (categoryFilter === "outdoor" && cartItem.category.toLowerCase() === "indoor") {
+        isShown = false;
+      }
+    }
+    return isShown;
+  });
+  return filteredCart;
 }
 
 function addFooter() {
@@ -427,6 +453,10 @@ updateCartQuantity();
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
+const cartCategory = document.getElementById("cart-category");
+const cartQuantity = document.getElementById("cart-quantity");
+
+[cartCategory, cartQuantity].forEach(el => el.addEventListener("change", renderCartItems));
 
 signUpButton.addEventListener("click", () => {
   container.classList.add("right-panel-active");
@@ -512,9 +542,6 @@ $(document).ready(function () {
       const quantity = parseInt($(this).find(".fw-normal").text());
       const price = parseInt($(this).find(".mb-0").last().text().replace("$", ""));
       const itemTotal = quantity * price;
-      console.log(quantity);
-      console.log(price);
-      console.log(itemTotal);
       total += itemTotal;
     });
 

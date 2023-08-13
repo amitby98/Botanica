@@ -79,14 +79,6 @@ function renderProducts(products) {
       updateCartQuantity();
     });
   });
-
-  ///////////Remove Product Function
-  $(document).ready(function () {
-    $(".trash-icon").on("click", function () {
-      const productList = $(this).closest(".product-box");
-      productList.remove();
-    });
-  });
 }
 
 $.ajax({
@@ -95,6 +87,10 @@ $.ajax({
   success: data => {
     console.log(data);
     renderProducts(data.products);
+    const outdoorCount = data.categoryCount.find(c => c._id === "Outdoor");
+    const indoorCount = data.categoryCount.find(c => c._id === "Indoor");
+    $("#indoorCount").text(`Indoor [${indoorCount.count}]`);
+    $("#outdoorCount").text(`Outdoor [${outdoorCount.count}]`);
   },
 });
 
